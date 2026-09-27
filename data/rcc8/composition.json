@@ -1,0 +1,86 @@
+{
+  "source": "Wikipedia, Region connection calculus, composition table. Star cells are expanded to all eight base relations. Matches the table in Renz and Nebel. No cell is empty; a contradiction is a base relation absent from the cell.",
+  "order": ["DC", "EC", "PO", "TPP", "NTPP", "TPPi", "NTPPi", "EQ"],
+  "composition": {
+    "DC": {
+      "DC": ["DC", "EC", "PO", "TPP", "NTPP", "TPPi", "NTPPi", "EQ"],
+      "EC": ["DC", "EC", "PO", "TPP", "NTPP"],
+      "PO": ["DC", "EC", "PO", "TPP", "NTPP"],
+      "TPP": ["DC", "EC", "PO", "TPP", "NTPP"],
+      "NTPP": ["DC", "EC", "PO", "TPP", "NTPP"],
+      "TPPi": ["DC"],
+      "NTPPi": ["DC"],
+      "EQ": ["DC"]
+    },
+    "EC": {
+      "DC": ["DC", "EC", "PO", "TPPi", "NTPPi"],
+      "EC": ["DC", "EC", "PO", "TPP", "TPPi", "EQ"],
+      "PO": ["DC", "EC", "PO", "TPP", "NTPP"],
+      "TPP": ["EC", "PO", "TPP", "NTPP"],
+      "NTPP": ["PO", "TPP", "NTPP"],
+      "TPPi": ["DC", "EC"],
+      "NTPPi": ["DC"],
+      "EQ": ["EC"]
+    },
+    "PO": {
+      "DC": ["DC", "EC", "PO", "TPPi", "NTPPi"],
+      "EC": ["DC", "EC", "PO", "TPPi", "NTPPi"],
+      "PO": ["DC", "EC", "PO", "TPP", "NTPP", "TPPi", "NTPPi", "EQ"],
+      "TPP": ["PO", "TPP", "NTPP"],
+      "NTPP": ["PO", "TPP", "NTPP"],
+      "TPPi": ["DC", "EC", "PO", "TPPi", "NTPPi"],
+      "NTPPi": ["DC", "EC", "PO", "TPPi", "NTPPi"],
+      "EQ": ["PO"]
+    },
+    "TPP": {
+      "DC": ["DC"],
+      "EC": ["DC", "EC"],
+      "PO": ["DC", "EC", "PO", "TPP", "NTPP"],
+      "TPP": ["TPP", "NTPP"],
+      "NTPP": ["NTPP"],
+      "TPPi": ["DC", "EC", "PO", "TPP", "TPPi", "EQ"],
+      "NTPPi": ["DC", "EC", "PO", "TPPi", "NTPPi"],
+      "EQ": ["TPP"]
+    },
+    "NTPP": {
+      "DC": ["DC"],
+      "EC": ["DC"],
+      "PO": ["DC", "EC", "PO", "TPP", "NTPP"],
+      "TPP": ["NTPP"],
+      "NTPP": ["NTPP"],
+      "TPPi": ["DC", "EC", "PO", "TPP", "NTPP"],
+      "NTPPi": ["DC", "EC", "PO", "TPP", "NTPP", "TPPi", "NTPPi", "EQ"],
+      "EQ": ["NTPP"]
+    },
+    "TPPi": {
+      "DC": ["DC", "EC", "PO", "TPPi", "NTPPi"],
+      "EC": ["EC", "PO", "TPPi", "NTPPi"],
+      "PO": ["PO", "TPPi", "NTPPi"],
+      "TPP": ["PO", "TPP", "TPPi", "EQ"],
+      "NTPP": ["PO", "TPP", "NTPP"],
+      "TPPi": ["TPPi", "NTPPi"],
+      "NTPPi": ["NTPPi"],
+      "EQ": ["TPPi"]
+    },
+    "NTPPi": {
+      "DC": ["DC", "EC", "PO", "TPPi", "NTPPi"],
+      "EC": ["PO", "TPPi", "NTPPi"],
+      "PO": ["PO", "TPPi", "NTPPi"],
+      "TPP": ["PO", "TPPi", "NTPPi"],
+      "NTPP": ["PO", "TPP", "NTPP", "TPPi", "NTPPi", "EQ"],
+      "TPPi": ["NTPPi"],
+      "NTPPi": ["NTPPi"],
+      "EQ": ["NTPPi"]
+    },
+    "EQ": {
+      "DC": ["DC"],
+      "EC": ["EC"],
+      "PO": ["PO"],
+      "TPP": ["TPP"],
+      "NTPP": ["NTPP"],
+      "TPPi": ["TPPi"],
+      "NTPPi": ["NTPPi"],
+      "EQ": ["EQ"]
+    }
+  }
+}

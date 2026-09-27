@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../work/main/dev/dev-01-develop/OmronXmlGenerator"
+		},
+		{
+			"path": "../../work/blzz/blmes/ct/ODAAF"
+		}
+	],
+	"settings": {
+		"specstory.cloudSync.enabled": "never"
+	}
+}

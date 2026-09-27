@@ -1,0 +1,16 @@
+{
+  "harmonic": 0,
+  "label": "第一个 sin",
+  "coefficient": "10000^0 = 1",
+  "note": "最低频那一圈的人工先验角度，不是训练结果。只放 RCC8 八个关系动词，同簇挤在一段连续扇区里。",
+  "verbs": [
+    {"name": "DC 相离", "code": "DC", "deg": 0},
+    {"name": "EC 外切", "code": "EC", "deg": 8},
+    {"name": "PO 部分相交", "code": "PO", "deg": 16},
+    {"name": "EQ 等同", "code": "EQ", "deg": 24},
+    {"name": "TPP 正切真子集", "code": "TPP", "deg": 36},
+    {"name": "TPPi", "code": "TPPi", "deg": 44},
+    {"name": "NTPP 非切真子集", "code": "NTPP", "deg": 56},
+    {"name": "NTPPi", "code": "NTPPi", "deg": 64}
+  ]
+}

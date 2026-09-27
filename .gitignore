@@ -1,0 +1,44 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# 本地大模型缓存与临时训练产物（占位 .gitkeep 仍入库）
+data/llm_cache/*
+!data/llm_cache/.gitkeep
+data/sandbox/*
+!data/sandbox/.gitkeep
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.whl
+
+# 豆包整页离线存档体积过大；讨论正文见 haoyujie_discuss_with_doubao/ 与 summary/
+resources/01dialog/*.html
+resources/01dialog/*_files/
+
+# 编辑器 / 系统
+.specstory/
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 本地环境与密钥
+.env
+.env.*
+*.pem
+*.key

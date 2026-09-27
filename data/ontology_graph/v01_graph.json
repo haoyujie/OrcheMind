@@ -1,0 +1,202 @@
+{
+  "nodes": [
+    {
+      "id": "0e095b29-d62a-4bb1-a652-31f0cc06aabc",
+      "name": "量"
+    },
+    {
+      "id": "c36aa9e9-5f7e-44b0-aa8f-b8cfade45fb8",
+      "name": "质"
+    },
+    {
+      "id": "802e9aa5-225d-4a29-96ae-100e9ccfc851",
+      "name": "关系"
+    },
+    {
+      "id": "bb7bdc0f-1088-4574-92ee-e78d8fb77c95",
+      "name": "模态"
+    },
+    {
+      "id": "b2fbb3cb-edce-4368-bf84-b13f455e8560",
+      "name": "单一性"
+    },
+    {
+      "id": "ab30e278-0d4e-4a12-883a-1c9ebc640ece",
+      "name": "多数性"
+    },
+    {
+      "id": "1d842daf-6c33-43b9-9bc2-db1030600fe7",
+      "name": "全体性"
+    },
+    {
+      "id": "9d7adaa6-3f94-4d41-b6c5-4c112b112095",
+      "name": "实在性"
+    },
+    {
+      "id": "94be0f76-b382-435c-8424-021dbf2d6640",
+      "name": "否定性"
+    },
+    {
+      "id": "561999af-3b6e-4665-affc-36491e6647a9",
+      "name": "限制性"
+    },
+    {
+      "id": "7b9ec527-eec6-4556-882b-93d750e304df",
+      "name": "实体与偶性"
+    },
+    {
+      "id": "8436345a-b938-474c-8435-e22dcb947ac4",
+      "name": "因果性"
+    },
+    {
+      "id": "18e20ffd-2886-4dd7-8101-60e93c17e3a3",
+      "name": "协同性（共存）"
+    },
+    {
+      "id": "7495174d-4207-4bbf-acf8-79b7569f6e23",
+      "name": "可能性与不可能性"
+    },
+    {
+      "id": "ff15a02e-80c9-4189-9390-5f66820dbe05",
+      "name": "存在性与不存在性"
+    },
+    {
+      "id": "b220b6e9-74ab-431d-a21c-a7e521974c24",
+      "name": "必然性与偶然性"
+    },
+    {
+      "id": "132f9159-839b-4116-94a0-ac2b4bc23274",
+      "name": "DC 相离"
+    },
+    {
+      "id": "5ffb7710-65b1-4cfc-8e3a-f9346d39df6c",
+      "name": "EC 外切"
+    },
+    {
+      "id": "06588519-caa8-4dc4-9a00-cc9ac0d0c4d3",
+      "name": "PO 部分相交"
+    },
+    {
+      "id": "fae5ed26-9157-4d56-ad69-2051a3b90f4c",
+      "name": "EQ 等同"
+    },
+    {
+      "id": "9739acdb-5def-4570-a74f-0fa6a576dbb3",
+      "name": "TPP 正切真子集"
+    },
+    {
+      "id": "166729ed-b716-4251-9c89-7a2a799b3ab9",
+      "name": "TPPi"
+    },
+    {
+      "id": "8d82a14c-b9ba-4678-9bea-abbd221f8a80",
+      "name": "NTPP 非切真子集"
+    },
+    {
+      "id": "4a4bafba-abdc-4356-9710-03133fb47253",
+      "name": "NTPPi"
+    }
+  ],
+  "links": [
+    {
+      "id": "63b214cc-32e7-41d8-885b-1d4e6a5014b8",
+      "source_id": "0e095b29-d62a-4bb1-a652-31f0cc06aabc",
+      "target_id": "b2fbb3cb-edce-4368-bf84-b13f455e8560"
+    },
+    {
+      "id": "a27e8144-4bcd-46db-91e7-2401a305f763",
+      "source_id": "0e095b29-d62a-4bb1-a652-31f0cc06aabc",
+      "target_id": "ab30e278-0d4e-4a12-883a-1c9ebc640ece"
+    },
+    {
+      "id": "bb52d227-3773-40cf-af1e-e73f2f3d2079",
+      "source_id": "0e095b29-d62a-4bb1-a652-31f0cc06aabc",
+      "target_id": "1d842daf-6c33-43b9-9bc2-db1030600fe7"
+    },
+    {
+      "id": "f730ce44-0ec3-4a4d-887c-9affff905e3a",
+      "source_id": "c36aa9e9-5f7e-44b0-aa8f-b8cfade45fb8",
+      "target_id": "9d7adaa6-3f94-4d41-b6c5-4c112b112095"
+    },
+    {
+      "id": "628c018f-7e7a-4c92-b59f-402d552b45bd",
+      "source_id": "c36aa9e9-5f7e-44b0-aa8f-b8cfade45fb8",
+      "target_id": "94be0f76-b382-435c-8424-021dbf2d6640"
+    },
+    {
+      "id": "310c1a57-083c-4d31-bfa7-4ece8b9905aa",
+      "source_id": "c36aa9e9-5f7e-44b0-aa8f-b8cfade45fb8",
+      "target_id": "561999af-3b6e-4665-affc-36491e6647a9"
+    },
+    {
+      "id": "5a01a27a-7e57-4de0-8393-5fb01b30fec6",
+      "source_id": "802e9aa5-225d-4a29-96ae-100e9ccfc851",
+      "target_id": "7b9ec527-eec6-4556-882b-93d750e304df"
+    },
+    {
+      "id": "19befc1a-0ca2-4ea2-8460-15725dce22d0",
+      "source_id": "802e9aa5-225d-4a29-96ae-100e9ccfc851",
+      "target_id": "8436345a-b938-474c-8435-e22dcb947ac4"
+    },
+    {
+      "id": "cc5bf950-ffec-4c93-bef1-8c8313d7b66f",
+      "source_id": "802e9aa5-225d-4a29-96ae-100e9ccfc851",
+      "target_id": "18e20ffd-2886-4dd7-8101-60e93c17e3a3"
+    },
+    {
+      "id": "29bb5837-aeda-4f1b-9283-f20c864775f3",
+      "source_id": "bb7bdc0f-1088-4574-92ee-e78d8fb77c95",
+      "target_id": "7495174d-4207-4bbf-acf8-79b7569f6e23"
+    },
+    {
+      "id": "b8f120ed-8513-46e1-83d1-d4d98f8642da",
+      "source_id": "bb7bdc0f-1088-4574-92ee-e78d8fb77c95",
+      "target_id": "ff15a02e-80c9-4189-9390-5f66820dbe05"
+    },
+    {
+      "id": "434b6b93-00bc-449a-afd6-abd348cae1ca",
+      "source_id": "bb7bdc0f-1088-4574-92ee-e78d8fb77c95",
+      "target_id": "b220b6e9-74ab-431d-a21c-a7e521974c24"
+    },
+    {
+      "id": "e4d1c650-1b4b-48d4-9917-28cd213c0741",
+      "source_id": "18e20ffd-2886-4dd7-8101-60e93c17e3a3",
+      "target_id": "132f9159-839b-4116-94a0-ac2b4bc23274"
+    },
+    {
+      "id": "844df33b-ccb8-414f-a6f2-852ed8028bbf",
+      "source_id": "18e20ffd-2886-4dd7-8101-60e93c17e3a3",
+      "target_id": "5ffb7710-65b1-4cfc-8e3a-f9346d39df6c"
+    },
+    {
+      "id": "106fb7c2-375c-49b0-a1ed-10f74905ef07",
+      "source_id": "18e20ffd-2886-4dd7-8101-60e93c17e3a3",
+      "target_id": "06588519-caa8-4dc4-9a00-cc9ac0d0c4d3"
+    },
+    {
+      "id": "dd44f3de-5a5a-44b0-802e-9e43843f3a8e",
+      "source_id": "18e20ffd-2886-4dd7-8101-60e93c17e3a3",
+      "target_id": "fae5ed26-9157-4d56-ad69-2051a3b90f4c"
+    },
+    {
+      "id": "2a73a77b-104d-4bd6-9c07-58b44db9d9e4",
+      "source_id": "18e20ffd-2886-4dd7-8101-60e93c17e3a3",
+      "target_id": "9739acdb-5def-4570-a74f-0fa6a576dbb3"
+    },
+    {
+      "id": "4bbbcd7f-8798-4c9b-bde8-80bb69a6f7b3",
+      "source_id": "18e20ffd-2886-4dd7-8101-60e93c17e3a3",
+      "target_id": "166729ed-b716-4251-9c89-7a2a799b3ab9"
+    },
+    {
+      "id": "18c8c3d5-253e-4e1c-a879-603eb5d39332",
+      "source_id": "18e20ffd-2886-4dd7-8101-60e93c17e3a3",
+      "target_id": "8d82a14c-b9ba-4678-9bea-abbd221f8a80"
+    },
+    {
+      "id": "2b6c2d7f-b2fe-4916-8735-0dd4c607d979",
+      "source_id": "18e20ffd-2886-4dd7-8101-60e93c17e3a3",
+      "target_id": "4a4bafba-abdc-4356-9710-03133fb47253"
+    }
+  ]
+}

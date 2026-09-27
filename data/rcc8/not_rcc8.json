@@ -1,0 +1,13 @@
+{
+  "note": "这些词不写入 RCC8 的八个基本关系。穿过一类是以后的扩展动词；crosses/contains 属于 GeoSPARQL，不是 RCC8。",
+  "excluded": [
+    {"term": "穿过", "why": "工程动词，涉及层叠或三维，不是二维区域的基本拓扑关系"},
+    {"term": "贯穿", "why": "与穿过同类的扩展动词"},
+    {"term": "穿透", "why": "与穿过同类的扩展动词"},
+    {"term": "crosses", "why": "GeoSPARQL / Simple Features 谓词，不是 RCC8"},
+    {"term": "contains", "why": "GeoSPARQL 谓词；RCC8 里相近的是 NTPPi 或 TPPi，二者并不相等"},
+    {"term": "图层", "why": "层叠结构，RCC8 不描述"},
+    {"term": "方向", "why": "RCC8 不描述方向"},
+    {"term": "距离", "why": "RCC8 不描述距离"}
+  ]
+}

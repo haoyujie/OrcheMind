@@ -1,0 +1,13 @@
+{
+  "source": "RCC8 base relations. Inverses follow Randell, Cui and Cohn 1992.",
+  "relations": [
+    {"code": "DC", "name_en": "Disconnected", "name_zh": "相离", "inverse": "DC"},
+    {"code": "EC", "name_en": "Externally connected", "name_zh": "外切", "inverse": "EC"},
+    {"code": "PO", "name_en": "Partially overlapping", "name_zh": "部分相交", "inverse": "PO"},
+    {"code": "EQ", "name_en": "Equal", "name_zh": "等同", "inverse": "EQ"},
+    {"code": "TPP", "name_en": "Tangential proper part", "name_zh": "正切真子集", "inverse": "TPPi"},
+    {"code": "TPPi", "name_en": "Tangential proper part inverse", "name_zh": "正切真子集之逆", "inverse": "TPP"},
+    {"code": "NTPP", "name_en": "Non-tangential proper part", "name_zh": "非切真子集", "inverse": "NTPPi"},
+    {"code": "NTPPi", "name_en": "Non-tangential proper part inverse", "name_zh": "非切真子集之逆", "inverse": "NTPP"}
+  ]
+}

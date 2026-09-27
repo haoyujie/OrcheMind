@@ -1,0 +1,10 @@
+{"r1": "NTPPi", "r2": "NTPPi", "allowed": ["NTPPi"]}
+{"r1": "NTPP", "r2": "NTPP", "allowed": ["NTPP"]}
+{"r1": "EQ", "r2": "TPP", "allowed": ["TPP"]}
+{"r1": "TPP", "r2": "EC", "allowed": ["DC", "EC"]}
+{"r1": "EC", "r2": "TPP", "allowed": ["EC", "PO", "TPP", "NTPP"]}
+{"r1": "DC", "r2": "EQ", "allowed": ["DC"]}
+{"r1": "TPP", "r2": "NTPP", "allowed": ["NTPP"]}
+{"r1": "DC", "r2": "DC", "allowed": ["DC", "EC", "PO", "TPP", "NTPP", "TPPi", "NTPPi", "EQ"]}
+{"r1": "NTPP", "r2": "NTPPi", "allowed": ["DC", "EC", "PO", "TPP", "NTPP", "TPPi", "NTPPi", "EQ"]}
+{"r1": "TPPi", "r2": "TPPi", "allowed": ["TPPi", "NTPPi"]}
