@@ -1,0 +1,13 @@
+{
+  "note": "旋转算子先验，与 angles_f0 展示扇区分离。EQ≈0；逆对相差约 180°。",
+  "verbs": [
+    {"code": "DC", "deg": 40},
+    {"code": "EC", "deg": 80},
+    {"code": "PO", "deg": 120},
+    {"code": "EQ", "deg": 0},
+    {"code": "TPP", "deg": 30},
+    {"code": "TPPi", "deg": 210},
+    {"code": "NTPP", "deg": 60},
+    {"code": "NTPPi", "deg": 240}
+  ]
+}

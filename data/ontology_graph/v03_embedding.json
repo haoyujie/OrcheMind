@@ -1,0 +1,192 @@
+{
+  "version": "v03_embedding_base",
+  "device": "cuda",
+  "harmonic": 0,
+  "label": "第一个 sin（算子角，含 Luxray 对齐）",
+  "coefficient": "10000^0 = 1",
+  "note": "实心点是旋转算子角；空心点是 angles_f0。L_alignment 对齐 Luxray nomic 嵌入，不微调大模型。",
+  "alignment": {
+    "provider": "luxray",
+    "model": "text-embedding-nomic-embed-text-v1.5",
+    "llm_dim": 768,
+    "w_align": 0.35,
+    "cosine_before": [
+      -0.00683904904872179,
+      -0.017630483955144882,
+      0.010525889694690704,
+      -0.017425810918211937,
+      -0.03269976004958153,
+      0.006962146144360304,
+      -0.035647012293338776,
+      0.003416912630200386
+    ],
+    "cosine_after": [
+      1.0,
+      1.0000001192092896,
+      1.0,
+      1.0,
+      1.0,
+      1.0000001192092896,
+      0.9999999403953552,
+      1.0
+    ],
+    "mean_cosine_before": -0.01116714597446844,
+    "mean_cosine_after": 1.0000000223517418
+  },
+  "entities": [
+    "inner",
+    "mid",
+    "outer",
+    "west",
+    "east",
+    "touch_west",
+    "touch_east",
+    "overlap_we",
+    "kernel",
+    "shell",
+    "rim",
+    "disc",
+    "disc_same"
+  ],
+  "n_train_triples": 48,
+  "max_delta_deg": 45.0,
+  "history": [
+    {
+      "epoch": 1,
+      "phase": "align",
+      "task": 0.5542667508125305,
+      "intra": 0.15365783870220184,
+      "inter": 0.05873880535364151,
+      "align": 1.0111671686172485,
+      "total": 0.918795108795166,
+      "fidelity": 8.002279355423525e-05,
+      "mean_cos": 0.17709469608962536
+    },
+    {
+      "epoch": 200,
+      "phase": "align",
+      "task": 0.5542826056480408,
+      "intra": 0.15336132049560547,
+      "inter": 0.059025898575782776,
+      "align": 3.2782554626464844e-07,
+      "total": 0.564902126789093,
+      "fidelity": 7.315334369195625e-05,
+      "mean_cos": 0.9999996870756149
+    },
+    {
+      "epoch": 400,
+      "phase": "align",
+      "task": 0.5542628169059753,
+      "intra": 0.1536862552165985,
+      "inter": 0.058314040303230286,
+      "align": 0.0,
+      "total": 0.5648627877235413,
+      "fidelity": 7.845609070500359e-05,
+      "mean_cos": 1.0000000074505806
+    },
+    {
+      "epoch": 600,
+      "phase": "align",
+      "task": 0.5542545318603516,
+      "intra": 0.15386953949928284,
+      "inter": 0.05809996277093887,
+      "align": 1.4901161193847656e-08,
+      "total": 0.5648530125617981,
+      "fidelity": 7.956798071973026e-05,
+      "mean_cos": 0.999999962747097
+    },
+    {
+      "epoch": 800,
+      "phase": "align",
+      "task": 0.5542517304420471,
+      "intra": 0.1539672464132309,
+      "inter": 0.05800729617476463,
+      "align": 2.2351741790771484e-08,
+      "total": 0.5648504495620728,
+      "fidelity": 7.963068492244929e-05,
+      "mean_cos": 1.0000000223517418
+    }
+  ],
+  "verbs": [
+    {
+      "name": "DC 相离",
+      "code": "DC",
+      "prior_deg": 0,
+      "operator_prior_deg": 40.0,
+      "learned_deg": 43.06317138671875,
+      "deg": 43.06317138671875,
+      "delta_deg": 3.06317138671875,
+      "align_cosine": 1.0
+    },
+    {
+      "name": "EC 外切",
+      "code": "EC",
+      "prior_deg": 8,
+      "operator_prior_deg": 80.0,
+      "learned_deg": 82.06964111328125,
+      "deg": 82.06964111328125,
+      "delta_deg": 2.06964111328125,
+      "align_cosine": 1.0000001192092896
+    },
+    {
+      "name": "PO 部分相交",
+      "code": "PO",
+      "prior_deg": 16,
+      "operator_prior_deg": 120.0,
+      "learned_deg": 120.92266845703125,
+      "deg": 120.92266845703125,
+      "delta_deg": 0.92266845703125,
+      "align_cosine": 1.0
+    },
+    {
+      "name": "EQ 等同",
+      "code": "EQ",
+      "prior_deg": 24,
+      "operator_prior_deg": 0.0,
+      "learned_deg": 358.9762268066406,
+      "deg": 358.9762268066406,
+      "delta_deg": -1.023773193359375,
+      "align_cosine": 1.0
+    },
+    {
+      "name": "TPP 正切真子集",
+      "code": "TPP",
+      "prior_deg": 36,
+      "operator_prior_deg": 30.0,
+      "learned_deg": 28.255279541015625,
+      "deg": 28.255279541015625,
+      "delta_deg": -1.744720458984375,
+      "align_cosine": 1.0
+    },
+    {
+      "name": "TPPi",
+      "code": "TPPi",
+      "prior_deg": 44,
+      "operator_prior_deg": 210.0,
+      "learned_deg": 210.56768798828125,
+      "deg": 210.56768798828125,
+      "delta_deg": 0.56768798828125,
+      "align_cosine": 1.0000001192092896
+    },
+    {
+      "name": "NTPP 非切真子集",
+      "code": "NTPP",
+      "prior_deg": 56,
+      "operator_prior_deg": 60.0,
+      "learned_deg": 61.115386962890625,
+      "deg": 61.115386962890625,
+      "delta_deg": 1.115386962890625,
+      "align_cosine": 0.9999999403953552
+    },
+    {
+      "name": "NTPPi",
+      "code": "NTPPi",
+      "prior_deg": 64,
+      "operator_prior_deg": 240.0,
+      "learned_deg": 239.31887817382812,
+      "deg": 239.31887817382812,
+      "delta_deg": -0.681121826171875,
+      "align_cosine": 1.0
+    }
+  ]
+}

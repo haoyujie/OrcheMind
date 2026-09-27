@@ -16,7 +16,7 @@ RCC8 公理包和第一批抽象三元组已写好，见 `docs/next-rcc8-rotate.
 
 ## 视图（当前）
 
-训练先停在 V02。`view/index.html` 用本地页面看两层：第一层是同样式的 node/link 本体地图，按问题里的名称命中节点和连线；第二层是第一个 sin 上的 RCC8 角度，数据在 `data/rcc8/angles_f0.json`，是人工先验，不是训练结果。
+`view/index.html` 两层：本体地图（V02）；第一谐波圆上空心点为 `angles_f0` 语义扇区，实心点为 V03 学到的算子角。
 
 ```text
 venv\Scripts\python.exe src\orchemind_graph\serve_view.py
@@ -24,8 +24,20 @@ venv\Scripts\python.exe src\orchemind_graph\serve_view.py
 
 然后打开 http://127.0.0.1:8765/view/index.html 。
 
-## V03 `v03_embedding_base`（未开始）
+## V03 `v03_embedding_base`（已验收）
 
-复平面角度、簇原型、带残差的嵌入与四项损失，以及与千问 token 嵌入的对齐。失败时回滚到 V02，不改 V02 的图拓扑。
+残差旋转：展示角与算子先验分离；各复维可在较大 `max_delta` 内散开，展示角用 fidelity 拉回先验。损失为过滤式全实体 CE + 弱簇约束 + fidelity，再接 `L_alignment`（Luxray nomic 嵌入，可学习 `W_align`，不微调大模型）。
 
-GPU 环境已装：`torch 2.11.0+cu128`，对应驱动 577.03（CUDA 12.9）。`src/orchemind_graph/rotate_smoke.py` 只在沙箱里用抽象三元组试旋转，权重不进本体图。正式训练和 WN18RR 都还没做。
+验收（`eval_v03.py`）：算子漂移 ≤8.5°；过滤 Hit@1 ≥85%（当前 35/35）。
+
+```text
+python src\orchemind_embedding\train_v03.py
+python src\orchemind_embedding\fetch_llm_targets.py
+python src\orchemind_embedding\train_v03_align.py
+python src\orchemind_embedding\eval_v03.py
+python src\orchemind_graph\export_figures.py
+```
+
+导出：`data/ontology_graph/v03_embedding.json`，快照：`snapshot/v03_embedding_base/`（含关系圆图）。不改 V02 图拓扑，不加载 WN18RR 权重。
+
+公开库图示约定见 `docs/figures/README.md`。

@@ -181,6 +181,10 @@ function drawMap(graph, question) {
     : "<p class='empty'>第一层没有命中已登记的节点。穿过这类词还不在这张图上。</p>";
 }
 
+function verbDeg(verb) {
+  return verb.learned_deg ?? verb.deg;
+}
+
 function drawCircle(angles, question) {
   const svg = document.getElementById("circle");
   svg.replaceChildren();
@@ -193,7 +197,16 @@ function drawCircle(angles, question) {
   svg.append(el("line", { x1: cx - radius - 16, y1: cy, x2: cx + radius + 16, y2: cy, stroke: "#e4ddd2" }));
   svg.append(el("line", { x1: cx, y1: cy - radius - 16, x2: cx, y2: cy + radius + 16, stroke: "#e4ddd2" }));
   for (const verb of angles.verbs) {
-    const rad = verb.deg * Math.PI / 180;
+    if (verb.prior_deg != null) {
+      const priorRad = verb.prior_deg * Math.PI / 180;
+      svg.append(el("circle", {
+        cx: cx + radius * Math.cos(priorRad),
+        cy: cy - radius * Math.sin(priorRad),
+        r: 3, fill: "none", stroke: "#8b97a3", "stroke-width": 1,
+      }));
+    }
+    const deg = verbDeg(verb);
+    const rad = deg * Math.PI / 180;
     const x = cx + radius * Math.cos(rad);
     const y = cy - radius * Math.sin(rad);
     const on = question.trim() && (question.includes(verb.name) || question.toUpperCase().includes(verb.code.toUpperCase()) || question.includes(verb.name.split(" ").pop()));
@@ -204,16 +217,21 @@ function drawCircle(angles, question) {
       "text-anchor": "middle", "dominant-baseline": "middle",
       "font-size": "12", fill: on ? "#c45c26" : "#1c2430",
     });
-    label.textContent = `${verb.code} ${verb.deg}°`;
+    const delta = verb.delta_deg == null ? "" : ` Δ${verb.delta_deg.toFixed(1)}`;
+    label.textContent = `${verb.code} ${deg.toFixed(1)}°${delta}`;
     svg.append(label);
   }
 }
 
 async function boot() {
-  const [graph, angles] = await Promise.all([
-    fetch("/data/ontology_graph/v02_graph.json").then(response => response.json()),
-    fetch("/data/rcc8/angles_f0.json").then(response => response.json()),
-  ]);
+  const graph = await fetch("/data/ontology_graph/v02_graph.json").then(response => response.json());
+  let angles;
+  const trained = await fetch("/data/ontology_graph/v03_embedding.json");
+  if (trained.ok) {
+    angles = await trained.json();
+  } else {
+    angles = await fetch("/data/rcc8/angles_f0.json").then(response => response.json());
+  }
   const input = document.getElementById("question");
   const render = () => {
     drawMap(graph, input.value);
