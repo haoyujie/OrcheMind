@@ -1,0 +1,44 @@
+{
+  "project": "oa",
+  "dna_version": "v001",
+  "note": "报销领域第一版本体。连线动词必须来自 data/project_dna/verbs.json。不导入 OA 源码或数据库。",
+  "nodes": [
+    {"id": "oa.invoice", "name": "发票"},
+    {"id": "oa.trip", "name": "行程"},
+    {"id": "oa.expense", "name": "费用"},
+    {"id": "oa.claim", "name": "报销单"},
+    {"id": "oa.policy", "name": "制度约束"}
+  ],
+  "links": [
+    {
+      "id": "oa.l.invoice_constitutes_expense",
+      "source_id": "oa.invoice",
+      "target_id": "oa.expense",
+      "verb": "constitutes"
+    },
+    {
+      "id": "oa.l.trip_causes_expense",
+      "source_id": "oa.trip",
+      "target_id": "oa.expense",
+      "verb": "causes"
+    },
+    {
+      "id": "oa.l.expense_constitutes_claim",
+      "source_id": "oa.expense",
+      "target_id": "oa.claim",
+      "verb": "constitutes"
+    },
+    {
+      "id": "oa.l.expense_inheres_trip",
+      "source_id": "oa.expense",
+      "target_id": "oa.trip",
+      "verb": "inheres_in"
+    },
+    {
+      "id": "oa.l.policy_constrains_claim",
+      "source_id": "oa.policy",
+      "target_id": "oa.claim",
+      "verb": "constrains"
+    }
+  ]
+}

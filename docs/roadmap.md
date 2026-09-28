@@ -41,3 +41,15 @@ python src\orchemind_graph\export_figures.py
 导出：`data/ontology_graph/v03_embedding.json`，快照：`snapshot/v03_embedding_base/`（含关系圆图）。不改 V02 图拓扑，不加载 WN18RR 权重。
 
 公开库图示约定见 `docs/figures/README.md`。
+
+## 工程 DNA（第一期，进行中）
+
+各工程的进化史记在 `data/project_dna/`，不写入 V01–V03 快照，本期不重训。
+
+一个版本按次序写四层：本体、Schema 端口、归入已有簇、版本说明。代码只在 `code_links.json` 里声明路径与节点，不解析、不生成。
+
+- 动词清单：`data/project_dna/verbs.json`（RCC8 + 引起 / 构成 / 依存 / 约束；穿过只作扩展动词）。
+- 第一份领域档案：`data/project_dna/oa/v001/`。写成后不改；下一版是 `v002`。
+- 校验：`python src\orchemind_graph\validate_project_dna.py`。
+
+第二期才做全局坐标（簇 + 动词角 + 节点 id），供 Q 落点。第三期才做 Schema 到代码的正向生成，以及代码变更回写 DNA。Omron 与考试题库的 DNA 排在 OA v001 通过之后。

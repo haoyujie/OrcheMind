@@ -1,0 +1,67 @@
+{
+  "project": "oa",
+  "dna_version": "v001",
+  "note": "同一批本体节点上的端口。allowed_verbs 只能来自动词清单。",
+  "ports": [
+    {
+      "id": "oa.invoice.amount",
+      "node_id": "oa.invoice",
+      "name": "金额",
+      "allowed_verbs": ["constitutes"]
+    },
+    {
+      "id": "oa.invoice.tax",
+      "node_id": "oa.invoice",
+      "name": "税额",
+      "allowed_verbs": ["constitutes"]
+    },
+    {
+      "id": "oa.invoice.date",
+      "node_id": "oa.invoice",
+      "name": "日期",
+      "allowed_verbs": ["constitutes", "inheres_in"]
+    },
+    {
+      "id": "oa.trip.depart_at",
+      "node_id": "oa.trip",
+      "name": "出发时间",
+      "allowed_verbs": ["causes"]
+    },
+    {
+      "id": "oa.trip.return_at",
+      "node_id": "oa.trip",
+      "name": "返回时间",
+      "allowed_verbs": ["causes"]
+    },
+    {
+      "id": "oa.expense.amount",
+      "node_id": "oa.expense",
+      "name": "金额",
+      "allowed_verbs": ["constitutes", "inheres_in", "causes"]
+    },
+    {
+      "id": "oa.expense.category",
+      "node_id": "oa.expense",
+      "name": "费用类别",
+      "allowed_verbs": ["constitutes", "inheres_in"]
+    },
+    {
+      "id": "oa.claim.lines",
+      "node_id": "oa.claim",
+      "name": "明细",
+      "allowed_verbs": ["constitutes", "constrains"]
+    },
+    {
+      "id": "oa.claim.total",
+      "node_id": "oa.claim",
+      "name": "合计",
+      "allowed_verbs": ["constitutes"]
+    },
+    {
+      "id": "oa.policy.rule",
+      "node_id": "oa.policy",
+      "name": "规则条目",
+      "allowed_verbs": ["constrains"]
+    }
+  ]
+}

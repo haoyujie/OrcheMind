@@ -59,6 +59,7 @@
 | 本体视图 | 可用 | 问题当作 Q：地图命中节点与连线；第一谐波圆上标 RCC8 角度 |
 
 | V03 嵌入训练 | 已验收 | 残差旋转 + 过滤 CE/fidelity；Hit@1 35/35；`L_alignment` 接 Luxray nomic 嵌入 |
+| 工程 DNA | 第一期 | 各工程只追加档案：本体 → Schema → 簇 → 文档。首份是 OA `v001`。Q 坐标与代码映射排在后面 |
 
 
 
@@ -82,7 +83,8 @@ OrcheMind/
 
 │  ├─ triples/            # 抽象三元组与组合题
 
-│  └─ sandbox/            # 本地训练冒烟（默认不入库）
+│  ├─ sandbox/            # 本地训练冒烟（默认不入库）
+│  └─ project_dna/        # 各工程 DNA（动词清单 + oa/v001）
 
 ├─ snapshot/              # 只读进化存档（含各版本 figures/）
 
@@ -163,6 +165,7 @@ Luxray（自建网关，对齐用）可选环境变量：`LUXRAY_API_BASE`、`LU
 python src\orchemind_graph\validate_v01.py
 
 python src\orchemind_graph\validate_v02.py
+python src\orchemind_graph\validate_project_dna.py
 
 
 

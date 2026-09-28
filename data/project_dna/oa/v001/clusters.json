@@ -1,0 +1,18 @@
+{
+  "project": "oa",
+  "dna_version": "v001",
+  "note": "只把动词和连线归入 verbs.json 已有簇。不新建范畴。",
+  "verb_clusters": {
+    "constitutes": "inherence",
+    "causes": "cause",
+    "inheres_in": "inherence",
+    "constrains": "norm"
+  },
+  "link_clusters": {
+    "oa.l.invoice_constitutes_expense": "inherence",
+    "oa.l.trip_causes_expense": "cause",
+    "oa.l.expense_constitutes_claim": "inherence",
+    "oa.l.expense_inheres_trip": "inherence",
+    "oa.l.policy_constrains_claim": "norm"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "project": "oa",
+  "dna_version": "v001",
+  "repo": "g:/work/manager/it/oa",
+  "note": "声明关联，不解析源码，不生成代码。path 相对 OA 仓库根。",
+  "links": [
+    {
+      "path": "server/internal/einvoice/parse.go",
+      "node_id": "oa.invoice"
+    },
+    {
+      "path": "server/internal/reimburse/invoice_identity.go",
+      "node_id": "oa.invoice"
+    },
+    {
+      "path": "server/internal/reimburse/model.go",
+      "node_id": "oa.trip"
+    },
+    {
+      "path": "server/internal/reimburse/hotel_amount.go",
+      "node_id": "oa.expense"
+    },
+    {
+      "path": "server/internal/reimburse/manual_reimb_pack.go",
+      "node_id": "oa.claim"
+    },
+    {
+      "path": "server/internal/reimburse/rules_handler.go",
+      "node_id": "oa.policy"
+    }
+  ]
+}
