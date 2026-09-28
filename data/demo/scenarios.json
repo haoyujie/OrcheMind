@@ -1,0 +1,469 @@
+{
+  "note": "第一层穷尽本体地图节点；第二层穷尽 RCC8 八个动词。供视图按钮与人工验收，不改 V02。",
+  "layer1_queries": [
+    {
+      "label": "量",
+      "query": "康德范畴量",
+      "expect_node": "量",
+      "group": "root"
+    },
+    {
+      "label": "质",
+      "query": "康德范畴质",
+      "expect_node": "质",
+      "group": "root"
+    },
+    {
+      "label": "关系",
+      "query": "康德范畴关系",
+      "expect_node": "关系",
+      "group": "root"
+    },
+    {
+      "label": "模态",
+      "query": "康德范畴模态",
+      "expect_node": "模态",
+      "group": "root"
+    },
+    {
+      "label": "单一性",
+      "query": "关于单一性",
+      "expect_node": "单一性",
+      "group": "category"
+    },
+    {
+      "label": "多数性",
+      "query": "关于多数性",
+      "expect_node": "多数性",
+      "group": "category"
+    },
+    {
+      "label": "全体性",
+      "query": "关于全体性",
+      "expect_node": "全体性",
+      "group": "category"
+    },
+    {
+      "label": "实在性",
+      "query": "关于实在性",
+      "expect_node": "实在性",
+      "group": "category"
+    },
+    {
+      "label": "否定性",
+      "query": "关于否定性",
+      "expect_node": "否定性",
+      "group": "category"
+    },
+    {
+      "label": "限制性",
+      "query": "关于限制性",
+      "expect_node": "限制性",
+      "group": "category"
+    },
+    {
+      "label": "实体与偶性",
+      "query": "关于实体与偶性",
+      "expect_node": "实体与偶性",
+      "group": "category"
+    },
+    {
+      "label": "因果性",
+      "query": "关于因果性",
+      "expect_node": "因果性",
+      "group": "category"
+    },
+    {
+      "label": "协同性（共存）",
+      "query": "关于协同性（共存）",
+      "expect_node": "协同性（共存）",
+      "group": "category"
+    },
+    {
+      "label": "可能性与不可能性",
+      "query": "关于可能性与不可能性",
+      "expect_node": "可能性与不可能性",
+      "group": "category"
+    },
+    {
+      "label": "存在性与不存在性",
+      "query": "关于存在性与不存在性",
+      "expect_node": "存在性与不存在性",
+      "group": "category"
+    },
+    {
+      "label": "必然性与偶然性",
+      "query": "关于必然性与偶然性",
+      "expect_node": "必然性与偶然性",
+      "group": "category"
+    },
+    {
+      "label": "DC",
+      "query": "协同性里的DC 相离",
+      "expect_node": "DC 相离",
+      "group": "rcc8"
+    },
+    {
+      "label": "EC",
+      "query": "协同性里的EC 外切",
+      "expect_node": "EC 外切",
+      "group": "rcc8"
+    },
+    {
+      "label": "PO",
+      "query": "协同性里的PO 部分相交",
+      "expect_node": "PO 部分相交",
+      "group": "rcc8"
+    },
+    {
+      "label": "EQ",
+      "query": "协同性里的EQ 等同",
+      "expect_node": "EQ 等同",
+      "group": "rcc8"
+    },
+    {
+      "label": "TPP",
+      "query": "协同性里的TPP 正切真子集",
+      "expect_node": "TPP 正切真子集",
+      "group": "rcc8"
+    },
+    {
+      "label": "TPPi",
+      "query": "协同性里的TPPi",
+      "expect_node": "TPPi",
+      "group": "rcc8"
+    },
+    {
+      "label": "NTPP",
+      "query": "协同性里的NTPP 非切真子集",
+      "expect_node": "NTPP 非切真子集",
+      "group": "rcc8"
+    },
+    {
+      "label": "NTPPi",
+      "query": "协同性里的NTPPi",
+      "expect_node": "NTPPi",
+      "group": "rcc8"
+    }
+  ],
+  "layer2_verbs": [
+    {
+      "code": "DC",
+      "label": "DC",
+      "query": "DC",
+      "n_triples": 54,
+      "examples": [
+        {
+          "head": "core",
+          "tail": "rim",
+          "scene": "nest"
+        },
+        {
+          "head": "mid",
+          "tail": "rim",
+          "scene": "nest"
+        },
+        {
+          "head": "west",
+          "tail": "east",
+          "scene": "side"
+        },
+        {
+          "head": "gap_w",
+          "tail": "east",
+          "scene": "side"
+        },
+        {
+          "head": "gap_e",
+          "tail": "west",
+          "scene": "side"
+        }
+      ]
+    },
+    {
+      "code": "EC",
+      "label": "EC",
+      "query": "EC",
+      "n_triples": 12,
+      "examples": [
+        {
+          "head": "west",
+          "tail": "gap_w",
+          "scene": "side"
+        },
+        {
+          "head": "east",
+          "tail": "gap_e",
+          "scene": "side"
+        },
+        {
+          "head": "north",
+          "tail": "belt",
+          "scene": "strip"
+        },
+        {
+          "head": "south",
+          "tail": "belt",
+          "scene": "strip"
+        },
+        {
+          "head": "dock",
+          "tail": "frame",
+          "scene": "frame"
+        }
+      ]
+    },
+    {
+      "code": "PO",
+      "label": "PO",
+      "query": "PO",
+      "n_triples": 9,
+      "examples": [
+        {
+          "head": "blend",
+          "tail": "west",
+          "scene": "side"
+        },
+        {
+          "head": "blend",
+          "tail": "east",
+          "scene": "side"
+        },
+        {
+          "head": "belt",
+          "tail": "blend",
+          "scene": "strip"
+        },
+        {
+          "head": "halo",
+          "tail": "frame",
+          "scene": "frame"
+        },
+        {
+          "head": "halo",
+          "tail": "dock",
+          "scene": "frame"
+        }
+      ]
+    },
+    {
+      "code": "EQ",
+      "label": "EQ",
+      "query": "EQ",
+      "n_triples": 6,
+      "examples": [
+        {
+          "head": "badge",
+          "tail": "badge_copy",
+          "scene": "equal"
+        },
+        {
+          "head": "mark",
+          "tail": "mark_same",
+          "scene": "equal"
+        },
+        {
+          "head": "ring_eq",
+          "tail": "ring_twin",
+          "scene": "frame"
+        },
+        {
+          "head": "cap_a",
+          "tail": "cap_b",
+          "scene": "grid"
+        },
+        {
+          "head": "cap_a",
+          "tail": "cap_c",
+          "scene": "grid"
+        }
+      ]
+    },
+    {
+      "code": "TPP",
+      "label": "TPP",
+      "query": "TPP",
+      "n_triples": 9,
+      "examples": [
+        {
+          "head": "rim",
+          "tail": "shell",
+          "scene": "nest"
+        },
+        {
+          "head": "mark",
+          "tail": "shell",
+          "scene": "equal"
+        },
+        {
+          "head": "mark_same",
+          "tail": "shell",
+          "scene": "equal"
+        },
+        {
+          "head": "lip",
+          "tail": "frame",
+          "scene": "frame"
+        },
+        {
+          "head": "ring_eq",
+          "tail": "world",
+          "scene": "frame"
+        }
+      ]
+    },
+    {
+      "code": "TPPi",
+      "label": "TPPi",
+      "query": "TPPi",
+      "n_triples": 9,
+      "examples": [
+        {
+          "head": "shell",
+          "tail": "rim",
+          "scene": "nest"
+        },
+        {
+          "head": "frame",
+          "tail": "lip",
+          "scene": "frame"
+        },
+        {
+          "head": "frame",
+          "tail": "cap_a",
+          "scene": "grid"
+        },
+        {
+          "head": "frame",
+          "tail": "cap_b",
+          "scene": "grid"
+        },
+        {
+          "head": "frame",
+          "tail": "cap_c",
+          "scene": "grid"
+        }
+      ]
+    },
+    {
+      "code": "NTPP",
+      "label": "NTPP",
+      "query": "NTPP",
+      "n_triples": 37,
+      "examples": [
+        {
+          "head": "core",
+          "tail": "mid",
+          "scene": "nest"
+        },
+        {
+          "head": "mid",
+          "tail": "shell",
+          "scene": "nest"
+        },
+        {
+          "head": "shell",
+          "tail": "world",
+          "scene": "nest"
+        },
+        {
+          "head": "core",
+          "tail": "shell",
+          "scene": "nest"
+        },
+        {
+          "head": "core",
+          "tail": "world",
+          "scene": "nest"
+        }
+      ]
+    },
+    {
+      "code": "NTPPi",
+      "label": "NTPPi",
+      "query": "NTPPi",
+      "n_triples": 9,
+      "examples": [
+        {
+          "head": "mid",
+          "tail": "core",
+          "scene": "nest"
+        },
+        {
+          "head": "shell",
+          "tail": "mid",
+          "scene": "nest"
+        },
+        {
+          "head": "shell",
+          "tail": "core",
+          "scene": "nest"
+        },
+        {
+          "head": "world",
+          "tail": "shell",
+          "scene": "nest"
+        },
+        {
+          "head": "world",
+          "tail": "mid",
+          "scene": "nest"
+        }
+      ]
+    }
+  ],
+  "preset_buttons": [
+    {
+      "label": "量·单一性",
+      "query": "关于单一性"
+    },
+    {
+      "label": "质·实在性",
+      "query": "关于实在性"
+    },
+    {
+      "label": "关系·协同性",
+      "query": "关于协同性（共存）"
+    },
+    {
+      "label": "模态·必然性",
+      "query": "关于必然性与偶然性"
+    },
+    {
+      "label": "DC 相离",
+      "query": "DC 相离"
+    },
+    {
+      "label": "EC 外切",
+      "query": "EC 外切"
+    },
+    {
+      "label": "PO 相交",
+      "query": "PO 部分相交"
+    },
+    {
+      "label": "EQ 等同",
+      "query": "EQ 等同"
+    },
+    {
+      "label": "TPP",
+      "query": "TPP 正切真子集"
+    },
+    {
+      "label": "TPPi",
+      "query": "TPPi"
+    },
+    {
+      "label": "NTPP",
+      "query": "NTPP 非切真子集"
+    },
+    {
+      "label": "NTPPi",
+      "query": "NTPPi"
+    },
+    {
+      "label": "穿过(未入图)",
+      "query": "通孔穿过焊盘"
+    }
+  ]
+}

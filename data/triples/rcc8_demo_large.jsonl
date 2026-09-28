@@ -1,0 +1,145 @@
+{"head": "core", "relation": "NTPP", "tail": "mid", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "mid", "relation": "NTPP", "tail": "shell", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "shell", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "core", "relation": "NTPP", "tail": "shell", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "core", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "mid", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "rim", "relation": "TPP", "tail": "shell", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "rim", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "core", "relation": "DC", "tail": "rim", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "mid", "relation": "DC", "tail": "rim", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "mid", "relation": "NTPPi", "tail": "core", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "shell", "relation": "NTPPi", "tail": "mid", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "shell", "relation": "NTPPi", "tail": "core", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "world", "relation": "NTPPi", "tail": "shell", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "world", "relation": "NTPPi", "tail": "mid", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "world", "relation": "NTPPi", "tail": "core", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "world", "relation": "NTPPi", "tail": "rim", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "shell", "relation": "TPPi", "tail": "rim", "split": "demo", "scene": "nest", "note": "同心嵌套与逆对"}
+{"head": "west", "relation": "DC", "tail": "east", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "west", "relation": "EC", "tail": "gap_w", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "east", "relation": "EC", "tail": "gap_e", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "gap_w", "relation": "DC", "tail": "east", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "gap_e", "relation": "DC", "tail": "west", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "gap_w", "relation": "DC", "tail": "gap_e", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "blend", "relation": "PO", "tail": "west", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "blend", "relation": "PO", "tail": "east", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "blend", "relation": "DC", "tail": "core", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "blend", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "west", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "east", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "gap_w", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "gap_e", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "west", "relation": "DC", "tail": "core", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "east", "relation": "DC", "tail": "core", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "west", "relation": "DC", "tail": "shell", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "east", "relation": "DC", "tail": "shell", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "gap_w", "relation": "DC", "tail": "shell", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "gap_e", "relation": "DC", "tail": "shell", "split": "demo", "scene": "side", "note": "左右相离/外切/部分相交"}
+{"head": "badge", "relation": "EQ", "tail": "badge_copy", "split": "demo", "scene": "equal", "note": "等同副本"}
+{"head": "badge", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "equal", "note": "等同副本"}
+{"head": "badge_copy", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "equal", "note": "等同副本"}
+{"head": "badge", "relation": "DC", "tail": "west", "split": "demo", "scene": "equal", "note": "等同副本"}
+{"head": "badge_copy", "relation": "DC", "tail": "east", "split": "demo", "scene": "equal", "note": "等同副本"}
+{"head": "badge", "relation": "DC", "tail": "core", "split": "demo", "scene": "equal", "note": "等同副本"}
+{"head": "badge_copy", "relation": "DC", "tail": "core", "split": "demo", "scene": "equal", "note": "等同副本"}
+{"head": "mark", "relation": "EQ", "tail": "mark_same", "split": "demo", "scene": "equal", "note": "等同副本"}
+{"head": "mark", "relation": "TPP", "tail": "shell", "split": "demo", "scene": "equal", "note": "等同副本"}
+{"head": "mark_same", "relation": "TPP", "tail": "shell", "split": "demo", "scene": "equal", "note": "等同副本"}
+{"head": "mark", "relation": "DC", "tail": "core", "split": "demo", "scene": "equal", "note": "等同副本"}
+{"head": "mark_same", "relation": "DC", "tail": "core", "split": "demo", "scene": "equal", "note": "等同副本"}
+{"head": "north", "relation": "DC", "tail": "south", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "north", "relation": "EC", "tail": "belt", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "south", "relation": "EC", "tail": "belt", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "north", "relation": "DC", "tail": "west", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "south", "relation": "DC", "tail": "east", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "belt", "relation": "PO", "tail": "blend", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "pocket_n", "relation": "NTPP", "tail": "north", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "pocket_s", "relation": "NTPP", "tail": "south", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "pocket_n", "relation": "DC", "tail": "south", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "pocket_s", "relation": "DC", "tail": "north", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "pocket_n", "relation": "DC", "tail": "pocket_s", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "north", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "south", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "belt", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "pocket_n", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "pocket_s", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "north", "relation": "DC", "tail": "core", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "south", "relation": "DC", "tail": "core", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "belt", "relation": "DC", "tail": "core", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "pocket_n", "relation": "DC", "tail": "rim", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "pocket_s", "relation": "DC", "tail": "rim", "split": "demo", "scene": "strip", "note": "南北条带"}
+{"head": "inset_a", "relation": "NTPP", "tail": "frame", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "inset_b", "relation": "NTPP", "tail": "frame", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "lip", "relation": "TPP", "tail": "frame", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "inset_a", "relation": "DC", "tail": "lip", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "inset_b", "relation": "DC", "tail": "lip", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "inset_a", "relation": "DC", "tail": "inset_b", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "frame", "relation": "NTPPi", "tail": "inset_a", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "frame", "relation": "NTPPi", "tail": "inset_b", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "frame", "relation": "TPPi", "tail": "lip", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "frame", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "inset_a", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "inset_b", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "lip", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "frame", "relation": "DC", "tail": "west", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "frame", "relation": "DC", "tail": "east", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "frame", "relation": "DC", "tail": "core", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "dock", "relation": "EC", "tail": "frame", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "dock", "relation": "DC", "tail": "inset_a", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "dock", "relation": "DC", "tail": "core", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "dock", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "halo", "relation": "PO", "tail": "frame", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "halo", "relation": "PO", "tail": "dock", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "halo", "relation": "DC", "tail": "core", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "halo", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "ring_eq", "relation": "EQ", "tail": "ring_twin", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "ring_eq", "relation": "TPP", "tail": "world", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "ring_twin", "relation": "TPP", "tail": "world", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "ring_eq", "relation": "DC", "tail": "core", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "ring_twin", "relation": "DC", "tail": "west", "split": "demo", "scene": "frame", "note": "画框与停靠"}
+{"head": "tile_11", "relation": "EC", "tail": "tile_12", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_12", "relation": "EC", "tail": "tile_13", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_11", "relation": "EC", "tail": "tile_21", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_12", "relation": "EC", "tail": "tile_22", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_13", "relation": "EC", "tail": "tile_23", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_21", "relation": "EC", "tail": "tile_22", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_22", "relation": "EC", "tail": "tile_23", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_11", "relation": "DC", "tail": "tile_13", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_11", "relation": "DC", "tail": "tile_23", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_13", "relation": "DC", "tail": "tile_21", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_21", "relation": "DC", "tail": "tile_23", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "overlap_row", "relation": "PO", "tail": "tile_11", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "overlap_row", "relation": "PO", "tail": "tile_12", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "overlap_col", "relation": "PO", "tail": "tile_12", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "overlap_col", "relation": "PO", "tail": "tile_22", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_11", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_12", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_13", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_21", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_22", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_23", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "overlap_row", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "overlap_col", "relation": "NTPP", "tail": "world", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_11", "relation": "DC", "tail": "core", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_22", "relation": "DC", "tail": "core", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "cap_a", "relation": "EQ", "tail": "cap_b", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "cap_a", "relation": "EQ", "tail": "cap_c", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "cap_b", "relation": "EQ", "tail": "cap_c", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "cap_a", "relation": "TPP", "tail": "frame", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "cap_b", "relation": "TPP", "tail": "frame", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "cap_c", "relation": "TPP", "tail": "frame", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "frame", "relation": "TPPi", "tail": "cap_a", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "frame", "relation": "TPPi", "tail": "cap_b", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "frame", "relation": "TPPi", "tail": "cap_c", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "shell", "relation": "TPPi", "tail": "mark", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "shell", "relation": "TPPi", "tail": "mark_same", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "world", "relation": "TPPi", "tail": "ring_eq", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "world", "relation": "TPPi", "tail": "ring_twin", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "cap_a", "relation": "DC", "tail": "core", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "cap_b", "relation": "DC", "tail": "west", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "cap_c", "relation": "DC", "tail": "east", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_11", "relation": "DC", "tail": "west", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "tile_23", "relation": "DC", "tail": "east", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "overlap_row", "relation": "DC", "tail": "core", "split": "demo", "scene": "grid", "note": "grid densify"}
+{"head": "overlap_col", "relation": "DC", "tail": "shell", "split": "demo", "scene": "grid", "note": "grid densify"}

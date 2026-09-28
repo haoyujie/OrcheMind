@@ -47,6 +47,14 @@
     cursor: pointer;
   }
   button.primary { background: var(--ink); color: white; border-color: var(--ink); }
+  .presets {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin: 0 0 14px; max-width: 980px;
+  }
+  .presets button { padding: 6px 10px; font-size: 13px; }
+  .presets .group-label {
+    flex: 1 0 100%; font-size: 12px; color: var(--muted); margin-top: 4px;
+  }
   .grid { display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 16px; padding-bottom: 40px; }
   section {
     background: var(--card);
@@ -69,10 +77,8 @@
   <form id="ask">
     <input id="question" type="text" placeholder="输入一个问题，例如：协同性里的相离" autocomplete="off">
     <button class="primary" type="submit">分解</button>
-    <button type="button" data-q="协同性里的相离">相离</button>
-    <button type="button" data-q="量的单一性">单一性</button>
-    <button type="button" data-q="通孔穿过焊盘">穿过</button>
   </form>
+  <div id="presets" class="presets" aria-label="演示预设"></div>
 </header>
 <main class="grid">
   <section>
@@ -232,6 +238,7 @@ async function boot() {
   } else {
     angles = await fetch("/data/rcc8/angles_f0.json").then(response => response.json());
   }
+  const scenarios = await fetch("/data/demo/scenarios.json").then(response => response.json()).catch(() => null);
   const input = document.getElementById("question");
   const render = () => {
     drawMap(graph, input.value);
@@ -241,12 +248,26 @@ async function boot() {
     event.preventDefault();
     render();
   });
-  document.querySelectorAll("button[data-q]").forEach(button => {
+  const presets = document.getElementById("presets");
+  const buttons = (scenarios && scenarios.preset_buttons) || [
+    { label: "相离", query: "协同性里的相离" },
+    { label: "单一性", query: "量的单一性" },
+    { label: "穿过", query: "通孔穿过焊盘" },
+  ];
+  const layer1 = document.createElement("div");
+  layer1.className = "group-label";
+  layer1.textContent = "第一层 · 范畴 / 第二层 · RCC8 动词（来自 data/demo/scenarios.json）";
+  presets.append(layer1);
+  for (const item of buttons) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = item.label;
     button.addEventListener("click", () => {
-      input.value = button.dataset.q;
+      input.value = item.query;
       render();
     });
-  });
+    presets.append(button);
+  }
   render();
 }
 

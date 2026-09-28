@@ -1,0 +1,405 @@
+{
+  "note": "第二层关系圆上八个动词的穷举目录：语义扇区角、算子先验角、演示三元组。",
+  "n_verbs": 8,
+  "n_demo_triples_total": 145,
+  "verbs": [
+    {
+      "code": "DC",
+      "name_zh": "相离",
+      "name_en": "Disconnected",
+      "inverse": "DC",
+      "display_deg": 0,
+      "operator_prior_deg": 40,
+      "n_demo_triples": 54,
+      "examples": [
+        {
+          "head": "core",
+          "tail": "rim",
+          "scene": "nest"
+        },
+        {
+          "head": "mid",
+          "tail": "rim",
+          "scene": "nest"
+        },
+        {
+          "head": "west",
+          "tail": "east",
+          "scene": "side"
+        },
+        {
+          "head": "gap_w",
+          "tail": "east",
+          "scene": "side"
+        },
+        {
+          "head": "gap_e",
+          "tail": "west",
+          "scene": "side"
+        },
+        {
+          "head": "gap_w",
+          "tail": "gap_e",
+          "scene": "side"
+        },
+        {
+          "head": "blend",
+          "tail": "core",
+          "scene": "side"
+        },
+        {
+          "head": "west",
+          "tail": "core",
+          "scene": "side"
+        }
+      ]
+    },
+    {
+      "code": "EC",
+      "name_zh": "外切",
+      "name_en": "Externally connected",
+      "inverse": "EC",
+      "display_deg": 8,
+      "operator_prior_deg": 80,
+      "n_demo_triples": 12,
+      "examples": [
+        {
+          "head": "west",
+          "tail": "gap_w",
+          "scene": "side"
+        },
+        {
+          "head": "east",
+          "tail": "gap_e",
+          "scene": "side"
+        },
+        {
+          "head": "north",
+          "tail": "belt",
+          "scene": "strip"
+        },
+        {
+          "head": "south",
+          "tail": "belt",
+          "scene": "strip"
+        },
+        {
+          "head": "dock",
+          "tail": "frame",
+          "scene": "frame"
+        },
+        {
+          "head": "tile_11",
+          "tail": "tile_12",
+          "scene": "grid"
+        },
+        {
+          "head": "tile_12",
+          "tail": "tile_13",
+          "scene": "grid"
+        },
+        {
+          "head": "tile_11",
+          "tail": "tile_21",
+          "scene": "grid"
+        }
+      ]
+    },
+    {
+      "code": "PO",
+      "name_zh": "部分相交",
+      "name_en": "Partially overlapping",
+      "inverse": "PO",
+      "display_deg": 16,
+      "operator_prior_deg": 120,
+      "n_demo_triples": 9,
+      "examples": [
+        {
+          "head": "blend",
+          "tail": "west",
+          "scene": "side"
+        },
+        {
+          "head": "blend",
+          "tail": "east",
+          "scene": "side"
+        },
+        {
+          "head": "belt",
+          "tail": "blend",
+          "scene": "strip"
+        },
+        {
+          "head": "halo",
+          "tail": "frame",
+          "scene": "frame"
+        },
+        {
+          "head": "halo",
+          "tail": "dock",
+          "scene": "frame"
+        },
+        {
+          "head": "overlap_row",
+          "tail": "tile_11",
+          "scene": "grid"
+        },
+        {
+          "head": "overlap_row",
+          "tail": "tile_12",
+          "scene": "grid"
+        },
+        {
+          "head": "overlap_col",
+          "tail": "tile_12",
+          "scene": "grid"
+        }
+      ]
+    },
+    {
+      "code": "EQ",
+      "name_zh": "等同",
+      "name_en": "Equal",
+      "inverse": "EQ",
+      "display_deg": 24,
+      "operator_prior_deg": 0,
+      "n_demo_triples": 6,
+      "examples": [
+        {
+          "head": "badge",
+          "tail": "badge_copy",
+          "scene": "equal"
+        },
+        {
+          "head": "mark",
+          "tail": "mark_same",
+          "scene": "equal"
+        },
+        {
+          "head": "ring_eq",
+          "tail": "ring_twin",
+          "scene": "frame"
+        },
+        {
+          "head": "cap_a",
+          "tail": "cap_b",
+          "scene": "grid"
+        },
+        {
+          "head": "cap_a",
+          "tail": "cap_c",
+          "scene": "grid"
+        },
+        {
+          "head": "cap_b",
+          "tail": "cap_c",
+          "scene": "grid"
+        }
+      ]
+    },
+    {
+      "code": "TPP",
+      "name_zh": "正切真子集",
+      "name_en": "Tangential proper part",
+      "inverse": "TPPi",
+      "display_deg": 36,
+      "operator_prior_deg": 30,
+      "n_demo_triples": 9,
+      "examples": [
+        {
+          "head": "rim",
+          "tail": "shell",
+          "scene": "nest"
+        },
+        {
+          "head": "mark",
+          "tail": "shell",
+          "scene": "equal"
+        },
+        {
+          "head": "mark_same",
+          "tail": "shell",
+          "scene": "equal"
+        },
+        {
+          "head": "lip",
+          "tail": "frame",
+          "scene": "frame"
+        },
+        {
+          "head": "ring_eq",
+          "tail": "world",
+          "scene": "frame"
+        },
+        {
+          "head": "ring_twin",
+          "tail": "world",
+          "scene": "frame"
+        },
+        {
+          "head": "cap_a",
+          "tail": "frame",
+          "scene": "grid"
+        },
+        {
+          "head": "cap_b",
+          "tail": "frame",
+          "scene": "grid"
+        }
+      ]
+    },
+    {
+      "code": "TPPi",
+      "name_zh": "正切真子集之逆",
+      "name_en": "Tangential proper part inverse",
+      "inverse": "TPP",
+      "display_deg": 44,
+      "operator_prior_deg": 210,
+      "n_demo_triples": 9,
+      "examples": [
+        {
+          "head": "shell",
+          "tail": "rim",
+          "scene": "nest"
+        },
+        {
+          "head": "frame",
+          "tail": "lip",
+          "scene": "frame"
+        },
+        {
+          "head": "frame",
+          "tail": "cap_a",
+          "scene": "grid"
+        },
+        {
+          "head": "frame",
+          "tail": "cap_b",
+          "scene": "grid"
+        },
+        {
+          "head": "frame",
+          "tail": "cap_c",
+          "scene": "grid"
+        },
+        {
+          "head": "shell",
+          "tail": "mark",
+          "scene": "grid"
+        },
+        {
+          "head": "shell",
+          "tail": "mark_same",
+          "scene": "grid"
+        },
+        {
+          "head": "world",
+          "tail": "ring_eq",
+          "scene": "grid"
+        }
+      ]
+    },
+    {
+      "code": "NTPP",
+      "name_zh": "非切真子集",
+      "name_en": "Non-tangential proper part",
+      "inverse": "NTPPi",
+      "display_deg": 56,
+      "operator_prior_deg": 60,
+      "n_demo_triples": 37,
+      "examples": [
+        {
+          "head": "core",
+          "tail": "mid",
+          "scene": "nest"
+        },
+        {
+          "head": "mid",
+          "tail": "shell",
+          "scene": "nest"
+        },
+        {
+          "head": "shell",
+          "tail": "world",
+          "scene": "nest"
+        },
+        {
+          "head": "core",
+          "tail": "shell",
+          "scene": "nest"
+        },
+        {
+          "head": "core",
+          "tail": "world",
+          "scene": "nest"
+        },
+        {
+          "head": "mid",
+          "tail": "world",
+          "scene": "nest"
+        },
+        {
+          "head": "rim",
+          "tail": "world",
+          "scene": "nest"
+        },
+        {
+          "head": "blend",
+          "tail": "world",
+          "scene": "side"
+        }
+      ]
+    },
+    {
+      "code": "NTPPi",
+      "name_zh": "非切真子集之逆",
+      "name_en": "Non-tangential proper part inverse",
+      "inverse": "NTPP",
+      "display_deg": 64,
+      "operator_prior_deg": 240,
+      "n_demo_triples": 9,
+      "examples": [
+        {
+          "head": "mid",
+          "tail": "core",
+          "scene": "nest"
+        },
+        {
+          "head": "shell",
+          "tail": "mid",
+          "scene": "nest"
+        },
+        {
+          "head": "shell",
+          "tail": "core",
+          "scene": "nest"
+        },
+        {
+          "head": "world",
+          "tail": "shell",
+          "scene": "nest"
+        },
+        {
+          "head": "world",
+          "tail": "mid",
+          "scene": "nest"
+        },
+        {
+          "head": "world",
+          "tail": "core",
+          "scene": "nest"
+        },
+        {
+          "head": "world",
+          "tail": "rim",
+          "scene": "nest"
+        },
+        {
+          "head": "frame",
+          "tail": "inset_a",
+          "scene": "frame"
+        }
+      ]
+    }
+  ]
+}
