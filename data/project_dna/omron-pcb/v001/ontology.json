@@ -1,0 +1,28 @@
+{
+  "project": "omron-pcb",
+  "dna_version": "v001",
+  "note": "二维码个体 [PRT 3-1] / 2DBD_644。不并入 omron-zextract。占位 ISU 用角色标明，动词仍是 part_of。",
+  "nodes": [
+    {"id": "pcb.prt_2dbd_644", "name": "2DBD_644", "oid": "1.3.6.1.4.1.55555.863.1.1.50", "anchor_verb": "part_of"},
+    {"id": "pcb.isu_slot", "name": "ISU 3-1-1-1 占位", "oid": "1.3.6.1.4.1.55555.863.1.1.51", "anchor_verb": "part_of"},
+    {"id": "pcb.isu_detect", "name": "ISU 3-1-1-2 检测单元", "oid": "1.3.6.1.4.1.55555.863.1.1.52", "anchor_verb": "aims_at"},
+    {"id": "pcb.insp_5", "name": "INSP 5", "oid": "1.3.6.1.4.1.55555.863.1.1.53", "anchor_verb": "aims_at"},
+    {"id": "pcb.win_84", "name": "WIN 84", "oid": "1.3.6.1.4.1.55555.863.1.1.54", "anchor_verb": "part_of"},
+    {"id": "pcb.win_85", "name": "WIN 85", "oid": "1.3.6.1.4.1.55555.863.1.1.55", "anchor_verb": "part_of"},
+    {"id": "pcb.group_11", "name": "算法组 11", "oid": "1.3.6.1.4.1.55555.863.1.1.56", "anchor_verb": "subordinate_to"},
+    {"id": "pcb.group_14", "name": "算法组 14", "oid": "1.3.6.1.4.1.55555.863.1.1.57", "anchor_verb": "composes"},
+    {"id": "pcb.item_mark", "name": "Mark 2054", "oid": "1.3.6.1.4.1.55555.863.1.1.58", "anchor_verb": "composes"},
+    {"id": "pcb.item_th", "name": "TH焊盘 2020", "oid": "1.3.6.1.4.1.55555.863.1.1.59", "anchor_verb": "composes"}
+  ],
+  "links": [
+    {"id": "pcb.l.slot_part_of_prt", "source_id": "pcb.isu_slot", "target_id": "pcb.prt_2dbd_644", "verb": "part_of"},
+    {"id": "pcb.l.isu_part_of_prt", "source_id": "pcb.isu_detect", "target_id": "pcb.prt_2dbd_644", "verb": "part_of"},
+    {"id": "pcb.l.isu_aims_insp", "source_id": "pcb.isu_detect", "target_id": "pcb.insp_5", "verb": "aims_at"},
+    {"id": "pcb.l.win84_part_of_isu", "source_id": "pcb.win_84", "target_id": "pcb.isu_detect", "verb": "part_of"},
+    {"id": "pcb.l.win85_part_of_isu", "source_id": "pcb.win_85", "target_id": "pcb.isu_detect", "verb": "part_of"},
+    {"id": "pcb.l.win84_sub_g11", "source_id": "pcb.win_84", "target_id": "pcb.group_11", "verb": "subordinate_to"},
+    {"id": "pcb.l.win85_sub_g14", "source_id": "pcb.win_85", "target_id": "pcb.group_14", "verb": "subordinate_to"},
+    {"id": "pcb.l.g14_composes_mark", "source_id": "pcb.group_14", "target_id": "pcb.item_mark", "verb": "composes"},
+    {"id": "pcb.l.g14_composes_th", "source_id": "pcb.group_14", "target_id": "pcb.item_th", "verb": "composes"}
+  ]
+}

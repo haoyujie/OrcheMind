@@ -1,0 +1,19 @@
+{
+  "project": "omron-pcb",
+  "dna_version": "v001",
+  "repo": "g:/work/main/dev/dev-01-develop/OmronXmlGenerator",
+  "note": "声明关联，不解析源码。相对 OmronXmlGenerator 仓库根。",
+  "links": [
+    {"path": "src/pcb/Baile.Pcb.Analyzer/Definitions/PRT_definition.csv", "node_id": "pcb.prt_2dbd_644"},
+    {"path": "src/pcb/Baile.Pcb.Analyzer/TypeEscapeDefs/ComponentTypeId.csv", "node_id": "pcb.prt_2dbd_644"},
+    {"path": "src/pcb/Baile.Pcb.Analyzer/Definitions/ISU_definition.csv", "node_id": "pcb.isu_detect"},
+    {"path": "src/pcb/Baile.Pcb.Analyzer/Definitions/ISU_definition.csv", "node_id": "pcb.isu_slot"},
+    {"path": "src/pcb/Baile.Pcb.Analyzer/Definitions/INSP-SCREEN-item_definition.csv", "node_id": "pcb.insp_5"},
+    {"path": "src/pcb/Baile.Pcb.Analyzer/Definitions/WIN_definition.csv", "node_id": "pcb.win_84"},
+    {"path": "src/pcb/Baile.Pcb.Analyzer/Definitions/WIN_definition.csv", "node_id": "pcb.win_85"},
+    {"path": "src/pcb/Baile.Pcb.Analyzer/Definitions/WIN_definition.csv", "node_id": "pcb.group_11"},
+    {"path": "src/pcb/Baile.Pcb.Analyzer/Definitions/WIN_definition.csv", "node_id": "pcb.group_14"},
+    {"path": "ODAAF/omron/omron-nodes.odaaf", "node_id": "pcb.item_mark"},
+    {"path": "ODAAF/omron/omron-nodes.odaaf", "node_id": "pcb.item_th"}
+  ]
+}

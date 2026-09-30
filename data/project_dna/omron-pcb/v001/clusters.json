@@ -1,0 +1,22 @@
+{
+  "project": "omron-pcb",
+  "dna_version": "v001",
+  "note": "簇只来自 verbs.json。",
+  "verb_clusters": {
+    "part_of": "inherence",
+    "aims_at": "cause",
+    "subordinate_to": "inherence",
+    "composes": "inherence"
+  },
+  "link_clusters": {
+    "pcb.l.slot_part_of_prt": "inherence",
+    "pcb.l.isu_part_of_prt": "inherence",
+    "pcb.l.isu_aims_insp": "cause",
+    "pcb.l.win84_part_of_isu": "inherence",
+    "pcb.l.win85_part_of_isu": "inherence",
+    "pcb.l.win84_sub_g11": "inherence",
+    "pcb.l.win85_sub_g14": "inherence",
+    "pcb.l.g14_composes_mark": "inherence",
+    "pcb.l.g14_composes_th": "inherence"
+  }
+}

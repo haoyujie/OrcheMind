@@ -1,0 +1,17 @@
+{
+  "project": "omron-pcb",
+  "dna_version": "v001",
+  "note": "端口对齐 omron-nodes.odaaf graphVersion 1.2.0 的二维码个体。allowed_verbs 只来自动词清单。",
+  "ports": [
+    {"id": "pcb.prt_2dbd_644.type", "node_id": "pcb.prt_2dbd_644", "name": "种类256", "allowed_verbs": ["part_of"]},
+    {"id": "pcb.isu_slot.role", "node_id": "pcb.isu_slot", "name": "占位", "allowed_verbs": ["part_of"]},
+    {"id": "pcb.isu_detect.seq", "node_id": "pcb.isu_detect", "name": "检查窗序号", "allowed_verbs": ["part_of", "aims_at"]},
+    {"id": "pcb.insp_5.record", "node_id": "pcb.insp_5", "name": "硬件记录", "allowed_verbs": ["aims_at"]},
+    {"id": "pcb.win_84.flag", "node_id": "pcb.win_84", "name": "TypeFlag84", "allowed_verbs": ["part_of", "subordinate_to"]},
+    {"id": "pcb.win_85.flag", "node_id": "pcb.win_85", "name": "TypeFlag85", "allowed_verbs": ["part_of", "subordinate_to"]},
+    {"id": "pcb.group_11.index", "node_id": "pcb.group_11", "name": "组序号11", "allowed_verbs": ["subordinate_to"]},
+    {"id": "pcb.group_14.index", "node_id": "pcb.group_14", "name": "组序号14", "allowed_verbs": ["subordinate_to", "composes"]},
+    {"id": "pcb.item_mark.tag", "node_id": "pcb.item_mark", "name": "2054", "allowed_verbs": ["composes"]},
+    {"id": "pcb.item_th.tag", "node_id": "pcb.item_th", "name": "2020", "allowed_verbs": ["composes"]}
+  ]
+}

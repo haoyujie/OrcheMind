@@ -95,7 +95,10 @@ def validate_version(version_dir: Path, verbs: dict) -> list[str]:
 def main() -> None:
     verbs = load(VERBS)
     errors: list[str] = []
-    versions = sorted(path for path in DNA.glob("*/*") if path.is_dir())
+    versions = sorted(
+        path for path in DNA.glob("*/*")
+        if path.is_dir() and (path / "ontology.json").is_file()
+    )
     if not versions:
         errors.append("没有工程 DNA 版本目录")
     for version_dir in versions:
