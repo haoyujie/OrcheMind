@@ -1,24 +1,31 @@
 {
-  "note": "工程 DNA 允许使用的动词。簇由人指定，本期不新建康德范畴。穿过只登记为扩展动词，不并进 RCC8。",
+  "note": "Keys and code stay English. name is the English verb. name_zh is a display gloss only. Clusters are assigned by hand. pass_through is an extension, not an RCC8 base relation. Critique verbs are schema only: not training targets until hand-labeled triples exist.",
   "clusters": [
-    {"id": "space", "name": "空间"},
-    {"id": "cause", "name": "因果"},
-    {"id": "inherence", "name": "实体与偶性"},
-    {"id": "norm", "name": "制度约束"}
+    {"id": "space", "name": "space", "name_zh": "空间"},
+    {"id": "cause", "name": "cause", "name_zh": "因果"},
+    {"id": "inherence", "name": "inherence", "name_zh": "实体与偶性"},
+    {"id": "norm", "name": "norm", "name_zh": "制度约束"}
   ],
   "verbs": [
-    {"code": "DC", "name_zh": "相离", "cluster": "space", "kind": "rcc8"},
-    {"code": "EC", "name_zh": "外切", "cluster": "space", "kind": "rcc8"},
-    {"code": "PO", "name_zh": "部分相交", "cluster": "space", "kind": "rcc8"},
-    {"code": "EQ", "name_zh": "等同", "cluster": "space", "kind": "rcc8"},
-    {"code": "TPP", "name_zh": "正切真子集", "cluster": "space", "kind": "rcc8"},
-    {"code": "TPPi", "name_zh": "正切真子集之逆", "cluster": "space", "kind": "rcc8"},
-    {"code": "NTPP", "name_zh": "非切真子集", "cluster": "space", "kind": "rcc8"},
-    {"code": "NTPPi", "name_zh": "非切真子集之逆", "cluster": "space", "kind": "rcc8"},
-    {"code": "causes", "name_zh": "引起", "cluster": "cause", "kind": "category"},
-    {"code": "constitutes", "name_zh": "构成", "cluster": "inherence", "kind": "category"},
-    {"code": "inheres_in", "name_zh": "依存于", "cluster": "inherence", "kind": "category"},
-    {"code": "constrains", "name_zh": "约束", "cluster": "norm", "kind": "category"},
-    {"code": "pass_through", "name_zh": "穿过", "cluster": "space", "kind": "extension", "not_rcc8": true}
+    {"code": "DC", "name": "disconnected", "name_zh": "相离", "cluster": "space", "kind": "rcc8"},
+    {"code": "EC", "name": "externally connected", "name_zh": "外切", "cluster": "space", "kind": "rcc8"},
+    {"code": "PO", "name": "partially overlapping", "name_zh": "部分相交", "cluster": "space", "kind": "rcc8"},
+    {"code": "EQ", "name": "equal", "name_zh": "等同", "cluster": "space", "kind": "rcc8"},
+    {"code": "TPP", "name": "tangential proper part", "name_zh": "正切真子集", "cluster": "space", "kind": "rcc8"},
+    {"code": "TPPi", "name": "tangential proper part inverse", "name_zh": "正切真子集之逆", "cluster": "space", "kind": "rcc8"},
+    {"code": "NTPP", "name": "non-tangential proper part", "name_zh": "非切真子集", "cluster": "space", "kind": "rcc8"},
+    {"code": "NTPPi", "name": "non-tangential proper part inverse", "name_zh": "非切真子集之逆", "cluster": "space", "kind": "rcc8"},
+    {"code": "causes", "name": "causes", "name_zh": "引起", "cluster": "cause", "kind": "category"},
+    {"code": "constitutes", "name": "constitutes", "name_zh": "构成", "cluster": "inherence", "kind": "category", "note": "Different kinds: matter constitutes an object. Not an array of the same element."},
+    {"code": "composes", "name": "composes", "name_zh": "组成", "cluster": "inherence", "kind": "category", "note": "Same kind of elements stacked into a collection, like a C array."},
+    {"code": "part_of", "name": "is part of", "name_zh": "是部分", "cluster": "inherence", "kind": "category", "note": "X is part of Y. Mereology, not peer affiliation."},
+    {"code": "subordinate_to", "name": "is subordinate to", "name_zh": "从属于", "cluster": "inherence", "kind": "category", "note": "Affiliation between peers of the same kind. Not part_of."},
+    {"code": "inheres_in", "name": "inheres in", "name_zh": "依存于", "cluster": "inherence", "kind": "category"},
+    {"code": "constrains", "name": "constrains", "name_zh": "约束", "cluster": "norm", "kind": "category"},
+    {"code": "pass_through", "name": "passes through", "name_zh": "穿过", "cluster": "space", "kind": "extension", "not_rcc8": true},
+    {"code": "constructs_from", "name": "constructs from", "name_zh": "在有限条件下构建", "cluster": "inherence", "kind": "category", "critique": "pure_reason", "status": "schema_only", "note": "Critique of Pure Reason: build a structure from limited given information."},
+    {"code": "forbids", "name": "forbids", "name_zh": "禁止", "cluster": "norm", "kind": "category", "critique": "practical_reason", "status": "schema_only", "note": "Critique of Practical Reason: what must not be done."},
+    {"code": "obliges", "name": "obliges", "name_zh": "要求", "cluster": "norm", "kind": "category", "critique": "practical_reason", "status": "schema_only", "note": "Critique of Practical Reason: what ought to be done."},
+    {"code": "aims_at", "name": "aims at", "name_zh": "以……为目的", "cluster": "cause", "kind": "category", "critique": "judgment", "status": "schema_only", "note": "Critique of Judgment: purposiveness, what is taken as the end. Not the moral law."}
   ]
 }

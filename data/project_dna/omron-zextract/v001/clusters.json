@@ -1,0 +1,25 @@
+{
+  "project": "omron-zextract",
+  "dna_version": "v001",
+  "note": "簇只来自 verbs.json。没有新建范畴。",
+  "verb_clusters": {
+    "composes": "inherence",
+    "aims_at": "cause",
+    "constructs_from": "inherence",
+    "causes": "cause",
+    "part_of": "inherence",
+    "constrains": "norm",
+    "constitutes": "inherence"
+  },
+  "link_clusters": {
+    "zx.l.layer_composes_mark": "inherence",
+    "zx.l.binding_aims_layer": "cause",
+    "zx.l.placement_constructs_layer": "inherence",
+    "zx.l.placement_causes_window": "cause",
+    "zx.l.window_part_of_layer": "inherence",
+    "zx.l.window_composes_land": "inherence",
+    "zx.l.rule_constrains_placement": "norm",
+    "zx.l.window_constitutes_pcb": "inherence",
+    "zx.l.rule_composes_param": "inherence"
+  }
+}

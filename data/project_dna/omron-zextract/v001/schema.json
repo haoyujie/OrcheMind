@@ -1,0 +1,55 @@
+{
+  "project": "omron-zextract",
+  "dna_version": "v001",
+  "note": "端口是这一业务上已经稳定的字段。allowed_verbs 只来自动词清单。",
+  "ports": [
+    {
+      "id": "zx.signal_layer.layer_name",
+      "node_id": "zx.signal_layer",
+      "name": "层名",
+      "allowed_verbs": ["constructs_from", "part_of", "aims_at"]
+    },
+    {
+      "id": "zx.layer_mark.kind",
+      "node_id": "zx.layer_mark",
+      "name": "几何种类",
+      "allowed_verbs": ["composes"]
+    },
+    {
+      "id": "zx.tool_binding.tool_id",
+      "node_id": "zx.tool_binding",
+      "name": "刀具",
+      "allowed_verbs": ["aims_at"]
+    },
+    {
+      "id": "zx.window.z_id",
+      "node_id": "zx.window",
+      "name": "窗Id",
+      "allowed_verbs": ["part_of", "constitutes", "composes"]
+    },
+    {
+      "id": "zx.host_land.land_id",
+      "node_id": "zx.host_land",
+      "name": "LandId",
+      "allowed_verbs": ["composes"]
+    },
+    {
+      "id": "zx.placement.mode",
+      "node_id": "zx.placement",
+      "name": "放置模式",
+      "allowed_verbs": ["causes", "constructs_from"]
+    },
+    {
+      "id": "zx.rule.stable_ordinal",
+      "node_id": "zx.rule",
+      "name": "永恒序号",
+      "allowed_verbs": ["constrains", "composes"]
+    },
+    {
+      "id": "zx.param.range",
+      "node_id": "zx.param",
+      "name": "上下限",
+      "allowed_verbs": ["composes"]
+    }
+  ]
+}

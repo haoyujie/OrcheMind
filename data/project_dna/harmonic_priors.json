@@ -1,0 +1,26 @@
+{
+  "note": "Declared harmonic-0 angles in degrees. RCC8 copies operator_prior.json. Category angles are hand-assigned sectors so a node coordinate can sit beside an OID. They are not V03 training output.",
+  "dim": 8,
+  "verbs": [
+    {"code": "DC", "deg": 40},
+    {"code": "EC", "deg": 80},
+    {"code": "PO", "deg": 120},
+    {"code": "EQ", "deg": 0},
+    {"code": "TPP", "deg": 30},
+    {"code": "TPPi", "deg": 210},
+    {"code": "NTPP", "deg": 60},
+    {"code": "NTPPi", "deg": 240},
+    {"code": "pass_through", "deg": 100},
+    {"code": "causes", "deg": 140},
+    {"code": "aims_at", "deg": 160},
+    {"code": "constitutes", "deg": 180},
+    {"code": "composes", "deg": 200},
+    {"code": "part_of", "deg": 220},
+    {"code": "subordinate_to", "deg": 260},
+    {"code": "inheres_in", "deg": 280},
+    {"code": "constructs_from", "deg": 300},
+    {"code": "constrains", "deg": 320},
+    {"code": "forbids", "deg": 335},
+    {"code": "obliges", "deg": 350}
+  ]
+}

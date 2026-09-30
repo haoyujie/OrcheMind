@@ -7,9 +7,6 @@
 			"path": "../../work/main/dev/dev-01-develop/OmronXmlGenerator"
 		},
 		{
-			"path": "../../work/blzz/blmes/ct/ODAAF"
-		},
-		{
 			"path": "../../work/manager/kaoshi"
 		},
 		{
@@ -17,6 +14,12 @@
 		},
 		{
 			"path": "../../work/manager/kaoshiresource"
+		},
+		{
+			"path": "../../work/blzz/AppMgr/blmes/ct/ODAAF"
+		},
+		{
+			"path": "../../work/blzz/AppMgr/blmes/ct/toollib4ct"
 		}
 	],
 	"settings": {

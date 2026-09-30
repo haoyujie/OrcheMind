@@ -1,0 +1,42 @@
+{
+  "project": "omron-zextract",
+  "dna_version": "v002",
+  "note": "对齐 zextract-rules.odaaf graphVersion 1.2.0：单信号层三元绑定 + 放置管线。v001 冻结不改。不导入 CSV 实例行。",
+  "nodes": [
+    {"id": "zx.signal_layer", "name": "信号层", "oid": "1.3.6.1.4.1.55555.862.1.1.3", "anchor_verb": "constructs_from"},
+    {"id": "zx.backdrill", "name": "背钻孔", "oid": "1.3.6.1.4.1.55555.862.1.1.10", "anchor_verb": "constitutes"},
+    {"id": "zx.pad", "name": "焊盘", "oid": "1.3.6.1.4.1.55555.862.1.1.11", "anchor_verb": "composes"},
+    {"id": "zx.keepout", "name": "焊盘近区", "oid": "1.3.6.1.4.1.55555.862.1.1.12", "anchor_verb": "forbids"},
+    {"id": "zx.trace", "name": "信号线", "oid": "1.3.6.1.4.1.55555.862.1.1.13", "anchor_verb": "composes"},
+    {"id": "zx.pad_pair", "name": "焊盘对", "oid": "1.3.6.1.4.1.55555.862.1.1.14", "anchor_verb": "aims_at"},
+    {"id": "zx.layer_mark", "name": "层上几何", "oid": "1.3.6.1.4.1.55555.862.1.1.4", "anchor_verb": "composes"},
+    {"id": "zx.tool_binding", "name": "刀具层绑定", "oid": "1.3.6.1.4.1.55555.862.1.1.5", "anchor_verb": "aims_at"},
+    {"id": "zx.window", "name": "Z抽出窗", "oid": "1.3.6.1.4.1.55555.862.1.1.6", "anchor_verb": "part_of"},
+    {"id": "zx.host_land", "name": "宿主焊盘", "oid": "1.3.6.1.4.1.55555.862.1.1.7", "anchor_verb": "EQ"},
+    {"id": "zx.placement", "name": "按层放置", "oid": "1.3.6.1.4.1.55555.862.1.1.8", "anchor_verb": "causes"},
+    {"id": "zx.pcb_win", "name": "PCB窗296", "oid": "1.3.6.1.4.1.55555.862.1.1.9", "anchor_verb": "constitutes"},
+    {"id": "zx.rule", "name": "Z抽出规则", "oid": "1.3.6.1.4.1.55555.862.1.1.1", "anchor_verb": "constrains"},
+    {"id": "zx.param", "name": "规则参数叶", "oid": "1.3.6.1.4.1.55555.862.1.1.2", "anchor_verb": "composes"}
+  ],
+  "links": [
+    {"id": "zx.l.layer_composes_mark", "source_id": "zx.signal_layer", "target_id": "zx.layer_mark", "verb": "composes"},
+    {"id": "zx.l.layer_hosts_backdrill", "source_id": "zx.signal_layer", "target_id": "zx.backdrill", "verb": "composes"},
+    {"id": "zx.l.backdrill_constitutes_pad", "source_id": "zx.backdrill", "target_id": "zx.pad", "verb": "constitutes"},
+    {"id": "zx.l.pad_composes_keepout", "source_id": "zx.pad", "target_id": "zx.keepout", "verb": "composes"},
+    {"id": "zx.l.pad_composes_trace", "source_id": "zx.pad", "target_id": "zx.trace", "verb": "composes"},
+    {"id": "zx.l.trace_composes_window", "source_id": "zx.trace", "target_id": "zx.window", "verb": "composes"},
+    {"id": "zx.l.keepout_forbids_window", "source_id": "zx.keepout", "target_id": "zx.window", "verb": "forbids"},
+    {"id": "zx.l.pad_composes_window", "source_id": "zx.pad", "target_id": "zx.window", "verb": "composes"},
+    {"id": "zx.l.pad_subordinate_pair", "source_id": "zx.pad", "target_id": "zx.pad_pair", "verb": "subordinate_to"},
+    {"id": "zx.l.pair_aims_trace", "source_id": "zx.pad_pair", "target_id": "zx.trace", "verb": "aims_at"},
+    {"id": "zx.l.pad_eq_host", "source_id": "zx.pad", "target_id": "zx.host_land", "verb": "EQ"},
+    {"id": "zx.l.binding_aims_layer", "source_id": "zx.tool_binding", "target_id": "zx.signal_layer", "verb": "aims_at"},
+    {"id": "zx.l.placement_constructs_layer", "source_id": "zx.placement", "target_id": "zx.signal_layer", "verb": "constructs_from"},
+    {"id": "zx.l.placement_causes_window", "source_id": "zx.placement", "target_id": "zx.window", "verb": "causes"},
+    {"id": "zx.l.window_part_of_layer", "source_id": "zx.window", "target_id": "zx.signal_layer", "verb": "part_of"},
+    {"id": "zx.l.window_composes_land", "source_id": "zx.window", "target_id": "zx.host_land", "verb": "composes"},
+    {"id": "zx.l.rule_constrains_placement", "source_id": "zx.rule", "target_id": "zx.placement", "verb": "constrains"},
+    {"id": "zx.l.window_constitutes_pcb", "source_id": "zx.window", "target_id": "zx.pcb_win", "verb": "constitutes"},
+    {"id": "zx.l.rule_composes_param", "source_id": "zx.rule", "target_id": "zx.param", "verb": "composes"}
+  ]
+}

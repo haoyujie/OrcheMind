@@ -32,6 +32,9 @@ def validate_version(version_dir: Path, verbs: dict) -> list[str]:
             errors.append(f"动词重复: {code}")
         if item["cluster"] not in allowed_clusters:
             errors.append(f"动词 {code} 使用了未登记簇 {item['cluster']}")
+        name = str(item.get("name", "")).strip()
+        if not name or not any("A" <= ch <= "Z" or "a" <= ch <= "z" for ch in name):
+            errors.append(f"动词 {code} 缺少英文 name")
         by_code[code] = item
     extension = by_code.get("pass_through")
     if extension is None or extension.get("kind") != "extension" or not extension.get("not_rcc8"):

@@ -1,0 +1,17 @@
+{
+  "project": "omron-zextract",
+  "dna_version": "v002",
+  "repo": "g:/work/main/dev/dev-01-develop/OmronXmlGenerator",
+  "note": "声明关联，不解析源码。相对 OmronXmlGenerator 仓库根。",
+  "links": [
+    {"path": "rule/07_ZExtraction/definitions/SIGNAL_LAYER_ONTOLOGY.md", "node_id": "zx.signal_layer"},
+    {"path": "rule/07_ZExtraction/definitions/zextract-definitions.tree.csv", "node_id": "zx.pad"},
+    {"path": "src/BHEditor/Modules/BHEditor.Modules.ZExtractStudio/Services/IZExtractSignalLayerProvider.cs", "node_id": "zx.signal_layer"},
+    {"path": "src/BHEditor/Modules/BHEditor.Modules.ZExtractStudio/Services/ZExtractZPlacementEngine.cs", "node_id": "zx.placement"},
+    {"path": "src/logic/Baile.XmlGen.Logic/Algorithm/ZExtractionProcessor.cs", "node_id": "zx.placement"},
+    {"path": "src/logic/Baile.ZExtract.Process/Services/XmlSourcedZExtractionPlacementService.cs", "node_id": "zx.window"},
+    {"path": "src/xml/Baile.XmlGen.Xml/XmlImporter.cs", "node_id": "zx.window"},
+    {"path": "ODAAF/bzox/zextract-rules.dna.csv", "node_id": "zx.rule"},
+    {"path": "ODAAF/bzox/zextract-rules.odaaf", "node_id": "zx.signal_layer"}
+  ]
+}

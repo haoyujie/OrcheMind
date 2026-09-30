@@ -1,0 +1,17 @@
+{
+  "project": "omron-zextract",
+  "dna_version": "v002",
+  "note": "端口对齐加深后的类。allowed_verbs 只来自动词清单。",
+  "ports": [
+    {"id": "zx.signal_layer.layer_name", "node_id": "zx.signal_layer", "name": "层名", "allowed_verbs": ["constructs_from", "part_of", "composes", "aims_at"]},
+    {"id": "zx.backdrill.tool_id", "node_id": "zx.backdrill", "name": "刀具", "allowed_verbs": ["constitutes", "composes"]},
+    {"id": "zx.pad.land_id", "node_id": "zx.pad", "name": "LandId", "allowed_verbs": ["composes", "subordinate_to", "EQ"]},
+    {"id": "zx.trace.identity", "node_id": "zx.trace", "name": "走线身份", "allowed_verbs": ["composes"]},
+    {"id": "zx.keepout.zone", "node_id": "zx.keepout", "name": "近区", "allowed_verbs": ["forbids", "composes"]},
+    {"id": "zx.window.z_id", "node_id": "zx.window", "name": "窗Id", "allowed_verbs": ["part_of", "constitutes", "composes"]},
+    {"id": "zx.pad_pair.context", "node_id": "zx.pad_pair", "name": "配对上下文", "allowed_verbs": ["aims_at", "subordinate_to"]},
+    {"id": "zx.placement.mode", "node_id": "zx.placement", "name": "放置模式", "allowed_verbs": ["causes", "constructs_from"]},
+    {"id": "zx.rule.stable_ordinal", "node_id": "zx.rule", "name": "永恒序号", "allowed_verbs": ["constrains", "composes"]},
+    {"id": "zx.param.range", "node_id": "zx.param", "name": "上下限", "allowed_verbs": ["composes"]}
+  ]
+}
