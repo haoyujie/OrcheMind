@@ -3,10 +3,11 @@
 #include <Magnum/GL/Buffer.h>
 #include <Magnum/GL/Mesh.h>
 
-enum class SurfaceKind { Torus, Hyperboloid, InnerTorus };
+enum class SurfaceKind { Torus, Hyperboloid, InnerTorus, TwistedTorus };
 
 struct SurfaceGpu {
     Magnum::GL::Buffer vertices;
+    Magnum::GL::Buffer normals;
     Magnum::GL::Buffer indices;
     Magnum::GL::Mesh mesh;
 };

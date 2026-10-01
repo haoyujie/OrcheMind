@@ -64,6 +64,9 @@ if(OMSTUDIO_BUILD_VIEWER)
     apps/viewer/demo_data.cpp
     apps/viewer/SurfaceMesh.cpp
     apps/viewer/TextCache.cpp
+    apps/viewer/Bloom.cpp
+    apps/viewer/GlowShader.cpp
+    apps/viewer/VortexField.cpp
   )
   target_link_libraries(omstudio_viewer PRIVATE
     omstudio_core

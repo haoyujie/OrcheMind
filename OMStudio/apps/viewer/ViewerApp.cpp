@@ -53,6 +53,7 @@ std::vector<HudButton> hudButtons(const Vector2i& ws) {
         {x0, 44, bw, bh, 1},
         {x0 + bw + gap, 44, bw, bh, 2},
         {x0, 80, bw, bh, 3},
+        {x0 + bw + gap, 80, bw, bh, 5},
         {x0, 124, 176, bh, 4},
     };
 }
@@ -74,6 +75,7 @@ struct Vert {
 const char* surfaceName(SurfaceKind k) {
     if (k == SurfaceKind::Hyperboloid) return "双曲面";
     if (k == SurfaceKind::InnerTorus) return "内环面";
+    if (k == SurfaceKind::TwistedTorus) return "涡旋环";
     return "环面";
 }
 
@@ -92,6 +94,7 @@ ViewerApp::ViewerApp(const Arguments& args, const Configuration& conf,
     buildSurface(torusSurf_, SurfaceKind::Torus);
     buildSurface(hyperSurf_, SurfaceKind::Hyperboloid);
     buildSurface(innerSurf_, SurfaceKind::InnerTorus);
+    buildSurface(twistSurf_, SurfaceKind::TwistedTorus);
 
     GL::Renderer::enable(GL::Renderer::Feature::DepthTest);
     GL::Renderer::enable(GL::Renderer::Feature::Blending);
@@ -127,27 +130,30 @@ void ViewerApp::cameraBasis(Vector3& cam, Vector3& right, Vector3& up) const {
 
 void ViewerApp::applySurface(SurfaceKind kind) {
     surface_ = kind;
-    const int dim = scene_.topology().dim();
-    const uint64_t sel = scene_.selected();
-    if (kind == SurfaceKind::Hyperboloid)
-        scene_.setTopology(om::makeHyperbolicTopology(dim));
-    else if (kind == SurfaceKind::InnerTorus)
-        scene_.setTopology(om::makeTorusTopology(dim, 1.15f, 0.48f, 0.22f, 0.16f));
-    else
-        scene_.setTopology(om::makeTorusTopology(dim, 2.2f, 1.0f, 0.35f, 0.25f));
-    if (sel) scene_.highlight(sel);
-    focusAnim_ = sel != 0;
+    // 涡旋环只是展示网格，不改核心投影，节点留在当前拓扑上。
+    if (kind != SurfaceKind::TwistedTorus) {
+        const int dim = scene_.topology().dim();
+        const uint64_t sel = scene_.selected();
+        if (kind == SurfaceKind::Hyperboloid)
+            scene_.setTopology(om::makeHyperbolicTopology(dim));
+        else if (kind == SurfaceKind::InnerTorus)
+            scene_.setTopology(om::makeTorusTopology(dim, 1.15f, 0.48f, 0.22f, 0.16f));
+        else
+            scene_.setTopology(om::makeTorusTopology(dim, 2.2f, 1.0f, 0.35f, 0.25f));
+        if (sel) scene_.highlight(sel);
+    }
+    focusAnim_ = scene_.selected() != 0;
     Debug{} << "[OMStudio] surface ->" << surfaceName(kind);
 }
 
 void ViewerApp::drawEvent() {
     const Vector2i fb = framebufferSize();
     const int viewW = std::max(1, fb.x() - kPanelW);
-
-    // 部分 Intel 驱动上 Magnum 的 DSA clear 清不掉深度，深度测试会把全部片元丢掉。
-    glViewport(0, 0, fb.x(), fb.y());
-    glClearColor(0.10f, 0.11f, 0.13f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    const auto now = std::chrono::steady_clock::now();
+    if (clock0_ == std::chrono::steady_clock::time_point{}) clock0_ = now;
+    showTime_ = std::chrono::duration<float>(now - clock0_).count();
+    // 约 12 圈/分钟。
+    spin_ = Matrix4::rotationY(Rad(showTime_ * 1.256637f));
 
     if (focusAnim_) {
         if (scene_.selected()) {
@@ -160,9 +166,7 @@ void ViewerApp::drawEvent() {
         }
     }
 
-    glViewport(0, 0, viewW, fb.y());
     updateCamera(viewW, fb.y());
-
     Vector3 camPos, right, up;
     cameraBasis(camPos, right, up);
 
@@ -171,16 +175,38 @@ void ViewerApp::drawEvent() {
     std::vector<om::RenderEdge> edges;
     scene_.collectVisible(frustum, toOmVec(camPos), 22.0f, 0.30f, nodes, edges);
 
-    renderSurface();
-    renderEdges(edges);
-    renderNodes(nodes);
-    renderLabels(edges, right, up);
+    if (showcase_) {
+        bloom_.resize({viewW, fb.y()});
+        bloom_.bindScene();
+        GL::Renderer::enable(GL::Renderer::Feature::DepthTest);
+        vortex_.drawStars(viewProj_, camPos);
+        renderSurface();
+        if (surface_ == SurfaceKind::TwistedTorus)
+            vortex_.drawFlow(viewProj_, spin_, camPos, showTime_);
+        vortex_.drawNodes(viewProj_, camPos, nodes, scene_.selected());
+        glViewport(0, 0, fb.x(), fb.y());
+        GL::defaultFramebuffer.bind();
+        glClearColor(0.020f, 0.027f, 0.043f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glViewport(0, 0, viewW, fb.y());
+        bloom_.composite(0.72f);
+    } else {
+        // 部分 Intel 驱动上 Magnum 的 DSA clear 清不掉深度。
+        glViewport(0, 0, fb.x(), fb.y());
+        glClearColor(0.10f, 0.11f, 0.13f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glViewport(0, 0, viewW, fb.y());
+        renderSurface();
+        renderEdges(edges);
+        renderNodes(nodes);
+        renderLabels(edges, right, up);
+    }
 
     glViewport(0, 0, fb.x(), fb.y());
     renderHud();
 
     swapBuffers();
-    if (focusAnim_ || rotating_ || panning_ || draggingObject_) redraw();
+    if (showcase_ || focusAnim_ || rotating_ || panning_ || draggingObject_) redraw();
 }
 
 void ViewerApp::drawSolid(const Vector3* quad, const Color4& color) {
@@ -227,12 +253,25 @@ void ViewerApp::renderSurface() {
     } else if (surface_ == SurfaceKind::InnerTorus) {
         gpu = &innerSurf_;
         color = Color4{0.28f, 0.62f, 0.48f, 0.42f};
+    } else if (surface_ == SurfaceKind::TwistedTorus) {
+        gpu = &twistSurf_;
+        color = Color4{0.16f, 0.55f, 0.85f, 0.45f};
     }
     GL::Renderer::disable(GL::Renderer::Feature::FaceCulling);
     glEnable(GL_POLYGON_OFFSET_FILL);
     glPolygonOffset(2.0f, 2.0f);
-    flat_.setTransformationProjectionMatrix(viewProj_).setColor(color);
-    flat_.draw(gpu->mesh);
+    if (showcase_) {
+        Vector3 cam, right, up;
+        cameraBasis(cam, right, up);
+        const Matrix4 model = (surface_ == SurfaceKind::TwistedTorus) ? spin_ : Matrix4{};
+        GL::Renderer::setBlendFunction(GL::Renderer::BlendFunction::SourceAlpha,
+                                       GL::Renderer::BlendFunction::OneMinusSourceAlpha);
+        glow_.setViewProj(viewProj_).setModel(model).setCamera(cam).setTime(showTime_);
+        glow_.draw(gpu->mesh);
+    } else {
+        flat_.setTransformationProjectionMatrix(viewProj_).setColor(color);
+        flat_.draw(gpu->mesh);
+    }
     glDisable(GL_POLYGON_OFFSET_FILL);
 }
 
@@ -344,6 +383,7 @@ void ViewerApp::renderHud() {
         if (b.action == 1) { caption = "环面"; on = surface_ == SurfaceKind::Torus; }
         else if (b.action == 2) { caption = "双曲面"; on = surface_ == SurfaceKind::Hyperboloid; }
         else if (b.action == 3) { caption = "内环面"; on = surface_ == SurfaceKind::InnerTorus; }
+        else if (b.action == 5) { caption = "涡旋环"; on = surface_ == SurfaceKind::TwistedTorus; }
         else {
             caption = positionsLocked_ ? "位置已锁定" : "位置可拖动";
             on = positionsLocked_;
@@ -359,8 +399,9 @@ void ViewerApp::renderHud() {
         drawText((float)b.x + 10, (float)b.y + 4, caption, 0.85f);
     }
     drawText(x0 + 16, 160, positionsLocked_ ? "解锁后可拖动选中对象" : "拖动选中对象以改位置", 0.8f);
+    drawText(x0 + 16, 184, showcase_ ? "展示模式   T 切数据" : "数据模式   T 切展示", 0.8f);
 
-    float y = 196;
+    float y = 216;
     const om::Entity* e = scene_.find(scene_.selected());
     if (!e) {
         drawText(x0 + 16, y, "未选择对象", 1.0f);
@@ -452,6 +493,7 @@ bool ViewerApp::handleHudClick(const Vector2i& pos) {
         if (b.action == 1) applySurface(SurfaceKind::Torus);
         else if (b.action == 2) applySurface(SurfaceKind::Hyperboloid);
         else if (b.action == 3) applySurface(SurfaceKind::InnerTorus);
+        else if (b.action == 5) applySurface(SurfaceKind::TwistedTorus);
         else positionsLocked_ = !positionsLocked_;
         redraw();
         return true;
@@ -541,7 +583,12 @@ void ViewerApp::keyPressEvent(KeyEvent& event) {
     if (event.key() == K::Tab) {
         if (surface_ == SurfaceKind::Torus) applySurface(SurfaceKind::Hyperboloid);
         else if (surface_ == SurfaceKind::Hyperboloid) applySurface(SurfaceKind::InnerTorus);
+        else if (surface_ == SurfaceKind::InnerTorus) applySurface(SurfaceKind::TwistedTorus);
         else applySurface(SurfaceKind::Torus);
+        redraw();
+    } else if (event.key() == K::T) {
+        showcase_ = !showcase_;
+        Debug{} << "[OMStudio]" << (showcase_ ? "showcase" : "data");
         redraw();
     } else if (event.key() == K::F) {
         if (scene_.selected()) focusAnim_ = true;

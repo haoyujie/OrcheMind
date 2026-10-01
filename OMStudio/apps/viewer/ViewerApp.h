@@ -9,8 +9,12 @@
 #include <Magnum/Math/Vector3.h>
 #include <Magnum/Platform/GlfwApplication.h>
 #include <Magnum/Shaders/Flat.h>
+#include "Bloom.h"
+#include "GlowShader.h"
 #include "SurfaceMesh.h"
 #include "TextCache.h"
+#include "VortexField.h"
+#include <chrono>
 #include <vector>
 
 namespace om {
@@ -48,8 +52,11 @@ private:
 
     om::Scene& scene_;
 
-    SurfaceKind surface_ = SurfaceKind::Torus;
+    SurfaceKind surface_ = SurfaceKind::TwistedTorus;
     bool positionsLocked_ = true;
+    bool showcase_ = true;
+    float showTime_ = 0.0f;
+    std::chrono::steady_clock::time_point clock0_{};
 
     // 轨道相机
     float theta_ = 0.6f, phi_ = 0.35f, dist_ = 10.0f;
@@ -62,8 +69,12 @@ private:
     Magnum::Shaders::Flat3D flat_;
     Magnum::Shaders::Flat3D flatTex_{Magnum::Shaders::Flat3D::Flag::Textured};
     Magnum::Matrix4 viewProj_;
-    SurfaceGpu torusSurf_, hyperSurf_, innerSurf_;
+    SurfaceGpu torusSurf_, hyperSurf_, innerSurf_, twistSurf_;
     TextCache text_;
+    Bloom bloom_;
+    GlowShader glow_;
+    VortexField vortex_;
+    Magnum::Matrix4 spin_{};
 
     // 输入状态
     bool rotating_ = false, panning_ = false, draggingObject_ = false, moved_ = false, uiPress_ = false;
