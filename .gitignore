@@ -42,3 +42,12 @@ desktop.ini
 .env.*
 *.pem
 *.key
+
+# OMStudio：C++ 构建目录与二进制不入库
+OMStudio/build/
+OMStudio/build-*/
+OMStudio/**/*.exe
+OMStudio/**/*.dll
+OMStudio/**/*.obj
+OMStudio/**/*.o
+OMStudio/**/*.a

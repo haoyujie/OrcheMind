@@ -18,12 +18,14 @@ struct Entity {
     std::string label;
 
     Vec3 pos3;                 // 投影缓存（拓扑投影后，渲染/拾取/剔除用）
+    bool pinned = false;       // 用户拖动后钉住，重投影不再覆盖
 };
 
-// 一条关联边（RCC8 关系种类由 C# 语义层维护，这里只存绘制所需强度）
+// 一条关联边。verb 是关系动词（如「生长」「drilledBy」），strength 是权重。
 struct Relation {
     uint64_t a = 0, b = 0;
     float strength = 1.0f;     // (0,1]，用于强度阈值过滤与粗细/透明度映射
+    std::string verb;
 };
 
 // 渲染层收到的紧凑节点（AoS，直接灌 GPU 实例缓冲）
@@ -38,6 +40,7 @@ struct RenderNode {
 struct RenderEdge {
     Vec3 pa, pb;
     float strength;
+    std::string verb;
 };
 
 } // namespace om

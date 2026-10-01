@@ -122,6 +122,11 @@ void om_set_relation(uint64_t a, uint64_t b, float strength) {
     needScene()->setRelation(a, b, strength);
 }
 
+void om_set_relation_verb(uint64_t a, uint64_t b, float strength, const char* verb) {
+    std::lock_guard<std::mutex> lock(g_mutex);
+    needScene()->setRelation(a, b, strength, verb ? verb : "");
+}
+
 int om_remove_relation(uint64_t a, uint64_t b) {
     std::lock_guard<std::mutex> lock(g_mutex);
     return needScene()->removeRelation(a, b) ? 1 : 0;

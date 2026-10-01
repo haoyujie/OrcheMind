@@ -38,12 +38,21 @@ if(OMSTUDIO_BUILD_TESTS)
   enable_testing()
   add_executable(omstudio_core_test tests/core_test.cpp)
   target_link_libraries(omstudio_core_test PRIVATE omstudio_core)
+  # 自测含 C API 冒烟。动态库存在时直接链 omstudio.dll；否则把 OmStudio.cpp 编进测试。
+  if(OMSTUDIO_BUILD_SHARED)
+    target_link_libraries(omstudio_core_test PRIVATE omstudio)
+  else()
+    target_sources(omstudio_core_test PRIVATE src/OmStudio.cpp)
+    target_compile_definitions(omstudio_core_test PRIVATE OMSTUDIO_EXPORTS)
+  endif()
   add_test(NAME core_test COMMAND omstudio_core_test)
 endif()
 
 # ---------------- Magnum 三维查看器 ----------------
 if(OMSTUDIO_BUILD_VIEWER)
-  find_package(Magnum REQUIRED COMPONENTS GL MeshTools Primitives Shaders)
+  # 让 find_package(GLFW) 命中 cmake/GLFWConfig.cmake（MSYS2 的 glfw3 别名）
+  list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+  find_package(Magnum REQUIRED COMPONENTS GL MeshTools Primitives Shaders GlfwApplication)
   # Application 后端由 vcpkg 提供（glfwapplication 或 sdl2application）
   if(NOT TARGET Magnum::Application)
     message(FATAL_ERROR "Magnum::Application 未找到。请安装 magnum[gl,glfwapplication] 或 magnum[gl,sdl2application]")
@@ -53,6 +62,8 @@ if(OMSTUDIO_BUILD_VIEWER)
     apps/viewer/main.cpp
     apps/viewer/ViewerApp.cpp
     apps/viewer/demo_data.cpp
+    apps/viewer/SurfaceMesh.cpp
+    apps/viewer/TextCache.cpp
   )
   target_link_libraries(omstudio_viewer PRIVATE
     omstudio_core
@@ -62,4 +73,10 @@ if(OMSTUDIO_BUILD_VIEWER)
     Magnum::Primitives
     Magnum::Shaders
   )
+  if(WIN32)
+    target_link_libraries(omstudio_viewer PRIVATE gdi32)
+  endif()
+  if(NOT MSVC)
+    target_compile_options(omstudio_viewer PRIVATE -finput-charset=UTF-8 -fexec-charset=UTF-8)
+  endif()
 endif()

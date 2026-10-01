@@ -27,7 +27,7 @@ public:
     std::vector<uint64_t> childrenOf(uint64_t parentId) const;
 
     // ---- 关联 ----
-    void setRelation(uint64_t a, uint64_t b, float strength); // (0,1]
+    void setRelation(uint64_t a, uint64_t b, float strength, const std::string& verb = {});
     bool removeRelation(uint64_t a, uint64_t b);
     const std::vector<Relation>& relations() const { return relations_; }
 
@@ -39,6 +39,8 @@ public:
 
     // ---- 选择与聚焦 ----
     void select(uint64_t id); // 选中并自动以该对象为拓扑中心
+    void highlight(uint64_t id); // 只标记选中，不重投影、不挪动其他对象
+    void pinPosition(uint64_t id, const Vec3& pos); // 解锁后拖动：钉住世界坐标
     void clearSelection();
     uint64_t selected() const { return selected_; }
     Vec3 centerPos() const;   // 当前拓扑中心的 3D 位置（无选中 → 原点）

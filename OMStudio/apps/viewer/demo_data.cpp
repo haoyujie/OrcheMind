@@ -34,11 +34,12 @@ void generate(Scene& scene, int count, unsigned seed) {
     for (int depth = 1; depth < 4 && total < count; ++depth) {
         std::vector<uint64_t> next;
         for (uint64_t pid : level) {
-            const Entity* pe = scene.find(pid);
+            // addEntity 会重分配 entities_，不能把 find() 指针留到下一次插入之后。
+            const VecN parentDim = scene.find(pid)->highDim;
             int kids = 2 + (int)(rng() % 3);
             for (int k = 0; k < kids && total < count; ++k) {
                 VecN v(6);
-                for (int d = 0; d < 6; ++d) v[d] = pe->highDim[d] * 0.72f + nd(rng) * 0.28f;
+                for (int d = 0; d < 6; ++d) v[d] = parentDim[d] * 0.72f + nd(rng) * 0.28f;
                 v[4] += depthBias[depth]; // 径向"生长"偏置 → 发丝向外
                 v[5] = ud(rng);           // 第6维：个体差异
                 normalizeInPlace(v);
@@ -50,7 +51,7 @@ void generate(Scene& scene, int count, unsigned seed) {
                 e.parentId = pid;
                 e.label = "morpheme_" + std::to_string(total + 1);
                 uint64_t id = scene.addEntity(e);
-                scene.setRelation(pid, id, 0.5f + (float)(rng() % 10) / 50.0f);
+                scene.setRelation(pid, id, 0.5f + (float)(rng() % 10) / 50.0f, "生长");
                 ++total;
                 next.push_back(id);
             }
@@ -70,7 +71,7 @@ void generate(Scene& scene, int count, unsigned seed) {
         float d = scene.topology().distance(ea->highDim, eb->highDim);
         if (d < 0.45f) {
             float s = 1.0f / (1.0f + d);
-            scene.setRelation(a, b, s > 0.95f ? 0.95f : s);
+            scene.setRelation(a, b, s > 0.95f ? 0.95f : s, "关联");
         }
     }
 }

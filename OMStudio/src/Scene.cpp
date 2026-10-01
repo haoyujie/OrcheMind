@@ -77,12 +77,22 @@ std::vector<uint64_t> Scene::childrenOf(uint64_t parentId) const {
     return out;
 }
 
-void Scene::setRelation(uint64_t a, uint64_t b, float strength) {
+void Scene::setRelation(uint64_t a, uint64_t b, float strength, const std::string& verb) {
     if (a == b || !find(a) || !find(b)) return;
     if (a > b) std::swap(a, b);
-    for (auto& r : relations_)
-        if (r.a == a && r.b == b) { r.strength = strength; return; }
-    relations_.push_back({a, b, strength});
+    for (auto& r : relations_) {
+        if (r.a == a && r.b == b) {
+            r.strength = strength;
+            if (!verb.empty()) r.verb = verb;
+            return;
+        }
+    }
+    Relation rel;
+    rel.a = a;
+    rel.b = b;
+    rel.strength = strength;
+    rel.verb = verb;
+    relations_.push_back(std::move(rel));
 }
 
 bool Scene::removeRelation(uint64_t a, uint64_t b) {
@@ -96,11 +106,26 @@ bool Scene::removeRelation(uint64_t a, uint64_t b) {
 
 void Scene::setTopology(std::unique_ptr<Topology> t) {
     topology_ = std::move(t);
+    for (auto& e : entities_) e.pinned = false;
     reprojectAll();
 }
 
 void Scene::reprojectAll() {
-    for (auto& e : entities_) e.pos3 = topology_->project(e.highDim);
+    for (auto& e : entities_) {
+        if (!e.pinned) e.pos3 = topology_->project(e.highDim);
+    }
+    rebuildOctree();
+}
+
+void Scene::highlight(uint64_t id) {
+    selected_ = find(id) ? id : 0;
+}
+
+void Scene::pinPosition(uint64_t id, const Vec3& pos) {
+    Entity* e = find(id);
+    if (!e) return;
+    e->pinned = true;
+    e->pos3 = pos;
     rebuildOctree();
 }
 
@@ -162,7 +187,12 @@ void Scene::collectVisible(const ViewFrustum& frustum, const Vec3& camPos,
         const Vec3& pb = entities_[ib->second].pos3;
         float da = (pa - camPos).length(), db = (pb - camPos).length();
         if (std::max(da, db) > lodMid) continue;
-        outEdges.push_back({pa, pb, rel.strength});
+        RenderEdge edge;
+        edge.pa = pa;
+        edge.pb = pb;
+        edge.strength = rel.strength;
+        edge.verb = rel.verb;
+        outEdges.push_back(std::move(edge));
     }
 }
 

@@ -77,6 +77,8 @@ namespace OrcheMind.OMStudio
 
         [DllImport(Dll, CallingConvention = CallingConvention.Cdecl)]
         public static extern void om_set_relation(ulong a, ulong b, float strength);
+        [DllImport(Dll, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public static extern void om_set_relation_verb(ulong a, ulong b, float strength, string verb);
         [DllImport(Dll, CallingConvention = CallingConvention.Cdecl)]
         public static extern int om_remove_relation(ulong a, ulong b);
 

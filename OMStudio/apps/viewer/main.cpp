@@ -18,11 +18,11 @@ int main(int argc, char** argv) {
 
     std::cout << "[OMStudio] entities=" << scene->entityCount()
               << " topology=" << scene->topologyName()
-              << "  (Tab:切换构型 左键:拾取/旋转 右键:平移 滚轮:缩放 F:聚焦 Esc:取消 G:生长新对象 C:详情)\n";
+              << "  (Tab:切换曲面 左键:选择 右键:平移 滚轮:缩放 解锁后可拖动 F:聚焦 Esc:取消 G:生长)\n";
 
-    Magnum::Platform::Application::Configuration conf;
+    Magnum::Platform::GlfwApplication::Configuration conf;
     conf.setTitle("OMStudio 3D Viewer").setSize(Magnum::Vector2i{1280, 800});
-    Magnum::Platform::Application::GLConfiguration glConf;
-    ViewerApp app{Magnum::Platform::Application::Arguments{argc, argv}, conf, glConf, *scene};
+    Magnum::Platform::GlfwApplication::GLConfiguration glConf;
+    ViewerApp app{Magnum::Platform::GlfwApplication::Arguments{argc, argv}, conf, glConf, *scene};
     return app.exec();
 }

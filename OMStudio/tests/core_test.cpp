@@ -75,8 +75,9 @@ void testScene() {
     CHECK(idA != 0 && idB != 0, "addEntity assigns ids");
     CHECK(scene.entityCount() == 2, "entityCount");
 
-    scene.setRelation(idA, idB, 0.9f);
+    scene.setRelation(idA, idB, 0.9f, "关联");
     CHECK(scene.relations().size() == 1, "setRelation");
+    CHECK(scene.relations()[0].verb == "关联", "relation verb");
 
     // 拾取：射线直穿 A 球心
     const om::Entity* ea = scene.find(idA);

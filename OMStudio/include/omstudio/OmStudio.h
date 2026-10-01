@@ -61,6 +61,7 @@ OM_API void om_clear_selection(void);
 
 // ---- 关联 ----
 OM_API void om_set_relation(uint64_t a, uint64_t b, float strength);
+OM_API void om_set_relation_verb(uint64_t a, uint64_t b, float strength, const char* verb);
 OM_API int om_remove_relation(uint64_t a, uint64_t b);
 
 // ---- 相机与拾取（C# 编辑器端可直接用，无需依赖 3D 窗口）----
