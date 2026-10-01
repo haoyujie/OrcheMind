@@ -55,6 +55,11 @@ std::vector<HudButton> hudButtons(const Vector2i& ws) {
         {x0, 80, bw, bh, 3},
         {x0 + bw + gap, 80, bw, bh, 5},
         {x0, 124, 176, bh, 4},
+        {x0 + 56, 212, 40, bh, 6},
+        {x0 + 104, 212, 40, bh, 7},
+        {x0 + 56, 248, 40, bh, 8},
+        {x0 + 104, 248, 40, bh, 9},
+        {x0 + 152, 248, 40, bh, 10},
     };
 }
 
@@ -150,10 +155,16 @@ void ViewerApp::drawEvent() {
     const Vector2i fb = framebufferSize();
     const int viewW = std::max(1, fb.x() - kPanelW);
     const auto now = std::chrono::steady_clock::now();
-    if (clock0_ == std::chrono::steady_clock::time_point{}) clock0_ = now;
-    showTime_ = std::chrono::duration<float>(now - clock0_).count();
-    // 约 12 圈/分钟。
-    spin_ = Matrix4::rotationY(Rad(showTime_ * 1.256637f));
+    float dt = 0.0f;
+    if (lastTick_ != std::chrono::steady_clock::time_point{})
+        dt = std::chrono::duration<float>(now - lastTick_).count();
+    lastTick_ = now;
+    if (dt > 0.05f) dt = 0.05f;
+    if (showcase_ && spinning_ && spinRate_ > 1e-4f) {
+        animTime_ += dt * spinRate_;
+        spinAngle_ += dt * spinRate_ * 1.256637f;
+    }
+    spin_ = Matrix4::rotationY(Rad(spinAngle_));
 
     if (focusAnim_) {
         if (scene_.selected()) {
@@ -179,17 +190,17 @@ void ViewerApp::drawEvent() {
         bloom_.resize({viewW, fb.y()});
         bloom_.bindScene();
         GL::Renderer::enable(GL::Renderer::Feature::DepthTest);
-        vortex_.drawStars(viewProj_, camPos);
+        vortex_.drawStars(viewProj_, camPos, brightness_);
         renderSurface();
         if (surface_ == SurfaceKind::TwistedTorus)
-            vortex_.drawFlow(viewProj_, spin_, camPos, showTime_);
-        vortex_.drawNodes(viewProj_, camPos, nodes, scene_.selected());
+            vortex_.drawFlow(viewProj_, spin_, camPos, animTime_, brightness_);
+        vortex_.drawNodes(viewProj_, camPos, nodes, scene_.selected(), brightness_);
         glViewport(0, 0, fb.x(), fb.y());
         GL::defaultFramebuffer.bind();
         glClearColor(0.020f, 0.027f, 0.043f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glViewport(0, 0, viewW, fb.y());
-        bloom_.composite(0.72f);
+        bloom_.composite(0.72f * brightness_);
     } else {
         // 部分 Intel 驱动上 Magnum 的 DSA clear 清不掉深度。
         glViewport(0, 0, fb.x(), fb.y());
@@ -206,7 +217,8 @@ void ViewerApp::drawEvent() {
     renderHud();
 
     swapBuffers();
-    if (showcase_ || focusAnim_ || rotating_ || panning_ || draggingObject_) redraw();
+    const bool vortexMoving = showcase_ && spinning_ && spinRate_ > 1e-4f;
+    if (vortexMoving || focusAnim_ || rotating_ || panning_ || draggingObject_) redraw();
 }
 
 void ViewerApp::drawSolid(const Vector3* quad, const Color4& color) {
@@ -266,7 +278,7 @@ void ViewerApp::renderSurface() {
         const Matrix4 model = (surface_ == SurfaceKind::TwistedTorus) ? spin_ : Matrix4{};
         GL::Renderer::setBlendFunction(GL::Renderer::BlendFunction::SourceAlpha,
                                        GL::Renderer::BlendFunction::OneMinusSourceAlpha);
-        glow_.setViewProj(viewProj_).setModel(model).setCamera(cam).setTime(showTime_);
+        glow_.setViewProj(viewProj_).setModel(model).setCamera(cam).setTime(animTime_).setGain(brightness_);
         glow_.draw(gpu->mesh);
     } else {
         flat_.setTransformationProjectionMatrix(viewProj_).setColor(color);
@@ -384,7 +396,15 @@ void ViewerApp::renderHud() {
         else if (b.action == 2) { caption = "双曲面"; on = surface_ == SurfaceKind::Hyperboloid; }
         else if (b.action == 3) { caption = "内环面"; on = surface_ == SurfaceKind::InnerTorus; }
         else if (b.action == 5) { caption = "涡旋环"; on = surface_ == SurfaceKind::TwistedTorus; }
-        else {
+        else if (b.action == 6) caption = "暗";
+        else if (b.action == 7) caption = "亮";
+        else if (b.action == 8) caption = "慢";
+        else if (b.action == 9) caption = "快";
+        else if (b.action == 10) {
+            caption = spinning_ ? "停" : "转";
+            on = !spinning_;
+            if (on) bg = Color4{0.45f, 0.32f, 0.12f, 1.0f};
+        } else {
             caption = positionsLocked_ ? "位置已锁定" : "位置可拖动";
             on = positionsLocked_;
             if (on) bg = Color4{0.45f, 0.32f, 0.12f, 1.0f};
@@ -400,8 +420,16 @@ void ViewerApp::renderHud() {
     }
     drawText(x0 + 16, 160, positionsLocked_ ? "解锁后可拖动选中对象" : "拖动选中对象以改位置", 0.8f);
     drawText(x0 + 16, 184, showcase_ ? "展示模式   T 切数据" : "数据模式   T 切展示", 0.8f);
+    char tune[32];
+    std::snprintf(tune, sizeof(tune), "%d%%", static_cast<int>(brightness_ * 100.0f + 0.5f));
+    drawText(x0 + 16, 216, tune, 0.8f);
+    if (!spinning_ || spinRate_ < 1e-3f) drawText(x0 + 16, 252, "停", 0.8f);
+    else {
+        std::snprintf(tune, sizeof(tune), "%.0f", 12.0f * spinRate_);
+        drawText(x0 + 16, 252, tune, 0.8f);
+    }
 
-    float y = 216;
+    float y = 300;
     const om::Entity* e = scene_.find(scene_.selected());
     if (!e) {
         drawText(x0 + 16, y, "未选择对象", 1.0f);
@@ -494,6 +522,11 @@ bool ViewerApp::handleHudClick(const Vector2i& pos) {
         else if (b.action == 2) applySurface(SurfaceKind::Hyperboloid);
         else if (b.action == 3) applySurface(SurfaceKind::InnerTorus);
         else if (b.action == 5) applySurface(SurfaceKind::TwistedTorus);
+        else if (b.action == 6) nudgeBrightness(0.8f);
+        else if (b.action == 7) nudgeBrightness(1.25f);
+        else if (b.action == 8) nudgeSpeed(-0.25f);
+        else if (b.action == 9) nudgeSpeed(0.25f);
+        else if (b.action == 10) toggleSpin();
         else positionsLocked_ = !positionsLocked_;
         redraw();
         return true;
@@ -572,6 +605,20 @@ void ViewerApp::mouseMoveEvent(MouseMoveEvent& event) {
     }
 }
 
+void ViewerApp::nudgeBrightness(float factor) {
+    brightness_ = Math::clamp(brightness_ * factor, 0.15f, 1.80f);
+}
+
+void ViewerApp::nudgeSpeed(float delta) {
+    spinRate_ = Math::clamp(spinRate_ + delta, 0.0f, 3.0f);
+    if (spinRate_ > 1e-3f) spinning_ = true;
+}
+
+void ViewerApp::toggleSpin() {
+    spinning_ = !spinning_;
+    if (spinning_ && spinRate_ < 1e-3f) spinRate_ = 1.0f;
+}
+
 void ViewerApp::mouseScrollEvent(MouseScrollEvent& event) {
     dist_ *= std::exp(-event.offset().y() * 0.15f);
     dist_ = Math::clamp(dist_, 0.4f, 60.0f);
@@ -589,6 +636,21 @@ void ViewerApp::keyPressEvent(KeyEvent& event) {
     } else if (event.key() == K::T) {
         showcase_ = !showcase_;
         Debug{} << "[OMStudio]" << (showcase_ ? "showcase" : "data");
+        redraw();
+    } else if (event.key() == K::LeftBracket) {
+        nudgeBrightness(0.8f);
+        redraw();
+    } else if (event.key() == K::RightBracket) {
+        nudgeBrightness(1.25f);
+        redraw();
+    } else if (event.key() == K::Minus) {
+        nudgeSpeed(-0.25f);
+        redraw();
+    } else if (event.key() == K::Equal) {
+        nudgeSpeed(0.25f);
+        redraw();
+    } else if (event.key() == K::Space) {
+        toggleSpin();
         redraw();
     } else if (event.key() == K::F) {
         if (scene_.selected()) focusAnim_ = true;

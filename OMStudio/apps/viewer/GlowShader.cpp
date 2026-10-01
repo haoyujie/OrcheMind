@@ -30,6 +30,7 @@ in vec3 vN;
 in vec3 vW;
 in vec3 vV;
 uniform float time;
+uniform float gain;
 out vec4 color;
 void main() {
     vec3 N = normalize(vN);
@@ -43,7 +44,7 @@ void main() {
     vec3 magenta = vec3(1.0, 0.24, 0.65);
     vec3 purple = vec3(0.69, 0.42, 1.0);
     vec3 neon = mix(mix(cyan, purple, stripe), magenta, 0.35 + 0.25 * sin(ang * 6.0));
-    vec3 rgb = neon * (0.05 + fres * 1.6) * pulse;
+    vec3 rgb = neon * (0.05 + fres * 1.6) * pulse * gain;
     float alpha = 0.06 + fres * 0.72;
     color = vec4(rgb, alpha);
 }
@@ -58,6 +59,7 @@ void main() {
     modelUniform_ = uniformLocation("model");
     cameraUniform_ = uniformLocation("cameraPos");
     timeUniform_ = uniformLocation("time");
+    gainUniform_ = uniformLocation("gain");
 }
 
 GlowShader& GlowShader::setViewProj(const Matrix4& m) {
@@ -74,5 +76,9 @@ GlowShader& GlowShader::setCamera(const Vector3& cam) {
 }
 GlowShader& GlowShader::setTime(float t) {
     setUniform(timeUniform_, t);
+    return *this;
+}
+GlowShader& GlowShader::setGain(float g) {
+    setUniform(gainUniform_, g);
     return *this;
 }

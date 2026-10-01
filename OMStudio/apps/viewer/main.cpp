@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
 
     std::cout << "[OMStudio] entities=" << scene->entityCount()
               << " topology=" << scene->topologyName()
-              << "  (T:展示/数据 Tab:切换曲面 左键:选择 右键:平移 滚轮:缩放 F:聚焦 Esc:取消 G:生长)\n";
+              << "  (T:展示/数据 Tab:切换曲面 [:暗 ]:亮 -:慢 =:快 空格:停 左键:选择 右键:平移 滚轮:缩放 F:聚焦 Esc:取消 G:生长)\n";
 
     Magnum::Platform::GlfwApplication::Configuration conf;
     conf.setTitle("OMStudio 3D Viewer").setSize(Magnum::Vector2i{1280, 800});

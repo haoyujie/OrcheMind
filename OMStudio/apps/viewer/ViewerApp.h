@@ -49,14 +49,21 @@ private:
     void renderHud();
     void drawSolid(const Magnum::Vector3* quad, const Magnum::Color4& color);
     void drawText(float x, float y, const std::string& utf8, float scale = 1.0f);
+    void nudgeBrightness(float factor);
+    void nudgeSpeed(float delta);
+    void toggleSpin();
 
     om::Scene& scene_;
 
     SurfaceKind surface_ = SurfaceKind::TwistedTorus;
     bool positionsLocked_ = true;
     bool showcase_ = true;
-    float showTime_ = 0.0f;
-    std::chrono::steady_clock::time_point clock0_{};
+    float brightness_ = 0.42f;
+    float spinRate_ = 1.0f;
+    bool spinning_ = true;
+    float animTime_ = 0.0f;
+    float spinAngle_ = 0.0f;
+    std::chrono::steady_clock::time_point lastTick_{};
 
     // 轨道相机
     float theta_ = 0.6f, phi_ = 0.35f, dist_ = 10.0f;

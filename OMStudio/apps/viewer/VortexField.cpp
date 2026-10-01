@@ -134,13 +134,14 @@ in float age;
 uniform mat4 viewProj;
 uniform mat4 spin;
 uniform float time;
+uniform float gain;
 out vec3 vColor;
 void main() {
     float th = param.x + param.z * (time - age);
     vec3 p = (spin * vec4(vortexAt(th, param.y), 1.0)).xyz;
     gl_Position = viewProj * vec4(p, 1.0);
     float fade = exp(-age * 3.2);
-    vColor = palette(param.w) * fade * 0.85;
+    vColor = palette(param.w) * fade * 0.85 * gain;
 }
 )GLSL");
         bindAttributeLocation(0, "param");
@@ -151,10 +152,11 @@ in vec3 position;
 in vec3 color;
 uniform mat4 viewProj;
 uniform mat4 spin;
+uniform float gain;
 out vec3 vColor;
 void main() {
     gl_Position = viewProj * spin * vec4(position, 1.0);
-    vColor = color;
+    vColor = color * gain;
 }
 )GLSL");
         bindAttributeLocation(0, "position");
@@ -173,6 +175,7 @@ void main() {
     CORRADE_INTERNAL_ASSERT_OUTPUT(link());
     viewProjUniform_ = uniformLocation("viewProj");
     spinUniform_ = uniformLocation("spin");
+    gainUniform_ = uniformLocation("gain");
     if (trail) timeUniform_ = uniformLocation("time");
 }
 
@@ -186,6 +189,10 @@ VortexField::LineShader& VortexField::LineShader::setSpin(const Matrix4& m) {
 }
 VortexField::LineShader& VortexField::LineShader::setTime(float t) {
     setUniform(timeUniform_, t);
+    return *this;
+}
+VortexField::LineShader& VortexField::LineShader::setGain(float g) {
+    setUniform(gainUniform_, g);
     return *this;
 }
 
@@ -270,25 +277,25 @@ VortexField::VortexField()
         .addVertexBuffer(nodeBuf_, 0, GL::Attribute<0, Vector3>{}, GL::Attribute<1, Vector3>{});
 }
 
-void VortexField::drawStars(const Matrix4& viewProj, const Vector3& camera) {
+void VortexField::drawStars(const Matrix4& viewProj, const Vector3& camera, float brightness) {
     glEnable(GL_PROGRAM_POINT_SIZE);
     GL::Renderer::disable(GL::Renderer::Feature::DepthTest);
-    starsShader_.setViewProj(viewProj).setCamera(camera).setPointScale(18.0f).setGain(0.55f);
+    starsShader_.setViewProj(viewProj).setCamera(camera).setPointScale(18.0f).setGain(0.55f * brightness);
     starsShader_.draw(starMesh_);
     GL::Renderer::enable(GL::Renderer::Feature::DepthTest);
 }
 
 void VortexField::drawFlow(const Matrix4& viewProj, const Matrix4& spin,
-                           const Vector3& camera, float time) {
+                           const Vector3& camera, float time, float brightness) {
     glEnable(GL_PROGRAM_POINT_SIZE);
     glDepthMask(GL_FALSE);
     GL::Renderer::setBlendFunction(GL::Renderer::BlendFunction::One, GL::Renderer::BlendFunction::One);
-    spokeShader_.setViewProj(viewProj).setSpin(spin);
+    spokeShader_.setViewProj(viewProj).setSpin(spin).setGain(brightness);
     spokeShader_.draw(spokeMesh_);
-    trailShader_.setViewProj(viewProj).setSpin(spin).setTime(time);
+    trailShader_.setViewProj(viewProj).setSpin(spin).setTime(time).setGain(brightness);
     trailShader_.draw(trailMesh_);
     particleShader_.setViewProj(viewProj).setSpin(spin).setCamera(camera).setTime(time)
-        .setPointScale(70.0f).setGain(2.4f);
+        .setPointScale(70.0f).setGain(2.4f * brightness);
     particleShader_.draw(particleMesh_);
     glDepthMask(GL_TRUE);
     GL::Renderer::setBlendFunction(GL::Renderer::BlendFunction::SourceAlpha,
@@ -296,7 +303,8 @@ void VortexField::drawFlow(const Matrix4& viewProj, const Matrix4& spin,
 }
 
 void VortexField::drawNodes(const Matrix4& viewProj, const Vector3& camera,
-                            const std::vector<om::RenderNode>& nodes, std::uint64_t selected) {
+                            const std::vector<om::RenderNode>& nodes, std::uint64_t selected,
+                            float brightness) {
     if (nodes.empty()) return;
     struct PCol { Vector3 p; Vector3 c; };
     std::vector<PCol> pts;
@@ -312,7 +320,7 @@ void VortexField::drawNodes(const Matrix4& viewProj, const Vector3& camera,
     glEnable(GL_PROGRAM_POINT_SIZE);
     glDepthMask(GL_FALSE);
     GL::Renderer::setBlendFunction(GL::Renderer::BlendFunction::One, GL::Renderer::BlendFunction::One);
-    nodeShader_.setViewProj(viewProj).setCamera(camera).setPointScale(90.0f).setGain(1.0f);
+    nodeShader_.setViewProj(viewProj).setCamera(camera).setPointScale(90.0f).setGain(brightness);
     nodeShader_.draw(nodeMesh_);
     glDepthMask(GL_TRUE);
     GL::Renderer::setBlendFunction(GL::Renderer::BlendFunction::SourceAlpha,

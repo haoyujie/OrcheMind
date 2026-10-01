@@ -15,11 +15,11 @@ class VortexField {
 public:
     VortexField();
 
-    void drawStars(const Magnum::Matrix4& viewProj, const Magnum::Vector3& camera);
+    void drawStars(const Magnum::Matrix4& viewProj, const Magnum::Vector3& camera, float brightness);
     void drawFlow(const Magnum::Matrix4& viewProj, const Magnum::Matrix4& spin,
-                  const Magnum::Vector3& camera, float time);
+                  const Magnum::Vector3& camera, float time, float brightness);
     void drawNodes(const Magnum::Matrix4& viewProj, const Magnum::Vector3& camera,
-                   const std::vector<om::RenderNode>& nodes, std::uint64_t selected);
+                   const std::vector<om::RenderNode>& nodes, std::uint64_t selected, float brightness);
 
 private:
     class PointShader : public Magnum::GL::AbstractShaderProgram {
@@ -47,11 +47,13 @@ private:
         LineShader& setViewProj(const Magnum::Matrix4& m);
         LineShader& setSpin(const Magnum::Matrix4& m);
         LineShader& setTime(float t);
+        LineShader& setGain(float g);
 
     private:
         Magnum::Int viewProjUniform_ = 0;
         Magnum::Int spinUniform_ = 0;
         Magnum::Int timeUniform_ = 0;
+        Magnum::Int gainUniform_ = 0;
     };
 
     PointShader starsShader_;

@@ -12,10 +12,12 @@ public:
     GlowShader& setModel(const Magnum::Matrix4& m);
     GlowShader& setCamera(const Magnum::Vector3& cam);
     GlowShader& setTime(float t);
+    GlowShader& setGain(float g);
 
 private:
     Magnum::Int viewProjUniform_ = 0;
     Magnum::Int modelUniform_ = 0;
     Magnum::Int cameraUniform_ = 0;
     Magnum::Int timeUniform_ = 0;
+    Magnum::Int gainUniform_ = 0;
 };
