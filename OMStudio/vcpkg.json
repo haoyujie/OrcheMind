@@ -1,0 +1,14 @@
+{
+  "name": "omstudio",
+  "version-string": "0.1.0",
+  "description": "OMStudio: high-dimensional ontology graph viewer (Clifford torus / Poincare ball topologies)",
+  "dependencies": [
+    {
+      "name": "magnum",
+      "features": [
+        "gl",
+        "glfwapplication"
+      ]
+    }
+  ]
+}
