@@ -1,8 +1,81 @@
 # 原典出处与使用边界
 
+## 三语术语表
+
+中文译名在不同译本里不统一，以德文原词为准。机器标识符一律用英文，不翻译。
+
+### 康德
+
+| 中文 | Deutsch | English | 本系统 |
+|---|---|---|---|
+| 物自体 / 自在之物 | Ding an sich | thing in itself | X 层；只有身份 |
+| 本体（消极意义） | Noumenon im negativen Verstande | noumenon in the negative sense | X 层（B307） |
+| 本体（积极意义） | Noumenon im positiven Verstande | noumenon in the positive sense | **不建**：需要理智直观，人没有 |
+| 先验对象 = X | transzendentaler Gegenstand = X | transcendental object = X | X 层锚点（A109） |
+| 界限概念 | Grenzbegriff | limiting concept | X 层存在的理由（A255/B310） |
+| 现象 / 显现 | Erscheinung | appearance | V 层每片叶子；N 层在先验上也是现象 |
+| 现象体 | Phaenomenon | phenomenon | 经范畴规定后的现象 |
+| 表象 | Vorstellung | representation | V 层：仪器给出的表象 |
+| 经验对象 | Gegenstand der Erfahrung | object of experience | N 层 |
+| 自然 | Natur | nature | N 层整体 |
+| 经验实在、先验观念 | empirische Realität, transzendentale Idealität | empirical reality, transcendental ideality | N 层工程上真实，但不冒充物自体（A28/B44） |
+| 直观 | Anschauung | intuition | 可测量的给予 |
+| 直观形式 | Form der Anschauung | form of intuition | 空间、时间 |
+| 空间 | Raum | space | 板坐标系，毫米；RCC8 |
+| 时间 | Zeit | time | 工序先后；事件 |
+| 先验感性论 | transzendentale Ästhetik | transcendental aesthetic | 空间、时间一节 |
+| 先验分析论 | transzendentale Analytik | transcendental analytic | 范畴、图型、原理 |
+| 知性 | Verstand | understanding | 给出范畴 |
+| 理性 | Vernunft | reason | 产生理念；只作调节用 |
+| 范畴 | Kategorie | category | 量、质、关系、模态 |
+| 范畴表 | Tafel der Kategorien | table of categories | A80/B106 |
+| 量：单一、多数、全体 | Einheit, Vielheit, Allheit | unity, plurality, totality | 序号、计数、整体 |
+| 质：实在、否定、限制 | Realität, Negation, Limitation | reality, negation, limitation | 有铜、去铜、残桩程度 |
+| 实体与偶性 | Substanz und Akzidenz (Inhärenz und Subsistenz) | substance and accident (inherence and subsistence) | 持存者；`inheres_in` |
+| 因果 | Kausalität und Dependenz | causality and dependence | `causes`，只连事件 |
+| 协同（共存） | Gemeinschaft (Wechselwirkung) | community (reciprocity) | RCC8；并存 |
+| 模态：可能、现实、必然 | Möglichkeit, Dasein, Notwendigkeit | possibility, existence (actuality), necessity | 写在证据与状态上，不是叶子 |
+| 外延量 | extensive Größe | extensive magnitude | 长度、面积、计数 |
+| 内包量 / 度 | intensive Größe, Grad | intensive magnitude, degree | 程度；残桩高度 |
+| 图型法 | Schematismus | schematism | 范畴须有可测规则 |
+| 经验类比 | Analogien der Erfahrung | analogies of experience | 持存、相继、共存 |
+| 经验思维的公设 | Postulate des empirischen Denkens | postulates of empirical thought | 模态的处理（A218/B265） |
+| 调节性使用 | regulativer Gebrauch | regulative use | 理念只引导，不给对象 |
+| 构成性 | konstitutiv | constitutive | 范畴对经验是构成性的 |
+| 准则 | Maxime | maxim | 视图自己的做法（运动员）；《实践理性批判》 |
+| 法则 | Gesetz | law | 世界文件里的规则（裁判）；准则要拿法则检验 |
+
+### 柏拉图
+
+| 中文 | Greek | English | 本系统 |
+|---|---|---|---|
+| 理念 / 形式 | εἶδος (eidos), ἰδέα (idea) | Form, Idea | N 层的种类（Class），不是 X |
+| 分有 | μέθεξις (methexis) | participation | 个别板分有板的种类 |
+| 影像 | εἰκών (eikōn) | image | V 层的文件 |
+| 想象（线喻最低段） | εἰκασία (eikasia) | imagination, image-thinking | 只看文件 |
+| 信念 | πίστις (pistis) | belief, conviction | 看到实物板 |
+| 数理思维 | διάνοια (dianoia) | thought, reasoning | 板的几何模型 |
+| 理性直观 | νόησις (noesis) | understanding, intellection | 把握种类本身 |
+| 洞穴 | — | the cave | 只看一面墙上的影子 |
+
+### 本系统标识符（不翻译）
+
+| 标识符 | 中文 | 意思 |
+|---|---|---|
+| `abstracted_from` | 抽象自 | V 叶子 → N 叶子；表示域 |
+| `appearance_of` | 是……的显现 | N 种类 → X；界限，只可思维 |
+| `x` / `nature` | 先验对象层 / 经验对象层 | 结构的 `layer` 值 |
+| `urn:odaaf:world:pcb` | 物自体表 / 本原表 | 世界文件 `pcb-world.odaaf`；id 前缀 `cls-pw-` 等 |
+| `odaaf:Imports` | 导入 | 项目文件只读引用世界文件；不保存、不分配身份 |
+| `odaaf:RetiredArcs` | 退役弧号 | 移走条目用过的弧号，永不复用 |
+| `part_of` `composes` `constitutes` `causes` `inheres_in` | 是部分、组成、构成、引起、依存于 | 经验域，同一层内部 |
+| RCC8：`DC` `EC` `PO` `EQ` `TPP` `TPPi` `NTPP` `NTPPi` | 相离、外切、部分相交、等同、正切真子集及其逆、非切真子集及其逆 | 共存的空间形式 |
+
+## 出处
+
 康德按 A/B 页码（第一版 1781 / 第二版 1787）。柏拉图按 Stephanus 页码。公有领域译本见 `data/project_dna/critiques.md`：Meiklejohn 译《纯粹理性批判》，Project Gutenberg ebook 4280。下面只写原意，不长段引用。
 
-## 康德《纯粹理性批判》
+### 康德《纯粹理性批判》
 
 | 处 | 原意 | 在本系统里的用法 |
 |---|---|---|
@@ -25,7 +98,13 @@
 | A255/B310–311 | 本体是界限概念，限制感性的僭越 | X 层存在的意义是划界，不是存数据 |
 | A313–320/B370–377 | 康德评柏拉图的“理念”，借用其词指理性概念 | 说明柏拉图理念与康德物自体不是一回事 |
 
-## 柏拉图
+### 康德《实践理性批判》
+
+| 处 | 原意 | 在本系统里的用法 |
+|---|---|---|
+| §7（科学院版 5:30） | 纯粹实践理性的基本法则：准则须能同时作为普遍立法的原则 | 只借结构：视图的做法（准则）拿世界规则（法则）检验；裁判与运动员分开。不赋予规则道德含义 |
+
+### 柏拉图
 
 | 处 | 原意 | 用法 |
 |---|---|---|
