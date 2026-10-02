@@ -16,9 +16,6 @@
 			"path": "../../work/manager/kaoshiresource"
 		},
 		{
-			"path": "../../work/blzz/AppMgr/blmes/ct/ODAAF"
-		},
-		{
 			"path": "../../work/blzz/AppMgr/blmes/ct/toollib4ct"
 		},
 		{
@@ -35,6 +32,9 @@
 		},
 		{
 			"path": "F:/pcb/issues/BZOX-974-first-dirll"
+		},
+		{
+			"path": "../OrcheEditor"
 		}
 	],
 	"settings": {

@@ -39,30 +39,43 @@ g++ -std=c++17 -O2 -shared -fPIC -I include src/OmStudio.cpp src/Scene.cpp src/O
 ```
 （MSVC 下用 CMake 的 `OMSTUDIO_BUILD_SHARED=ON` 目标 `omstudio`。）
 
-### 3) Magnum 3D 查看器（需要 MSVC + vcpkg；MinGW 暂不保证）
+### 3) Magnum 3D 查看器（MSYS2 MinGW，本机已用这条编过）
+
+依赖：`C:\msys64\mingw64` 里的 Magnum（GLFW 应用）、GLFW、CMake、Ninja。缺包时在 MSYS2 的 MINGW64 壳里：
+
+```bash
+pacman -S mingw-w64-x86_64-magnum mingw-w64-x86_64-glfw mingw-w64-x86_64-cmake mingw-w64-x86_64-ninja
+```
+
+配置一次，之后只构建查看器：
 
 ```powershell
-git clone https://github.com/microsoft/vcpkg
-cd vcpkg && .\bootstrap-vcpkg.bat
-.\vcpkg install magnum[gl,glfwapplication] --triplet x64-windows
 cd G:\myfuture\OrcheMind\OMStudio
-cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=<vcpkg>\scripts\buildsystems\vcpkg.cmake
-cmake --build build --config Release
-.\build\Release\omstudio_viewer.exe 5000
+cmake -B build-viewer -S . -G Ninja -DCMAKE_PREFIX_PATH=C:/msys64/mingw64 -DCMAKE_CXX_COMPILER=C:/msys64/mingw64/bin/c++.exe
+cmake --build build-viewer --target omstudio_viewer
 ```
-> 说明：vcpkg 的 `magnum` 端口主要面向 MSVC（x64-windows triplet）。本机当前只有 MinGW g++，
-> 核心库与 DLL 已用 g++ 验证；查看器建议安装 VS Build Tools 后构建。
-> 若用 SDL2 后端，把 vcpkg.json 与 CMake 中的 `glfwapplication` 换成 `sdl2application`。
+
+启动时把 MinGW 的 `bin` 放在 PATH 最前，否则缺 `libMagnum*.dll`。参数是请求的实体数，演示数据只长到大约 4 层，传入 400 实际大约 44 个实体：
+
+```powershell
+$env:PATH = "C:\msys64\mingw64\bin;" + $env:PATH
+.\build-viewer\omstudio_viewer.exe 400
+```
 
 ## 运行操作
 
 | 按键/鼠标 | 动作 |
 |---|---|
 | 左键点击 | 拾取并选中；以该对象为拓扑中心聚焦 |
-| 左键拖拽 | 旋转轨道相机 |
+| 左键拖拽 | 位置锁定时旋转轨道相机；解锁后拖动选中对象 |
 | 右键拖拽 | 平移目标 |
 | 滚轮 | 缩放 |
-| Tab | 切换构型：Clifford 环面 ↔ 庞加莱双曲球 |
+| Tab | 切换曲面：环面 → 双曲面 → 内环面 → 涡旋环 |
+| T | 展示模式与数据模式切换。展示模式默认涡旋环、粒子和 bloom |
+| `[` `]` | 涡旋环变暗 / 变亮 |
+| `-` `=` | 涡旋环转慢 / 转快（1 档约每分钟 12 圈） |
+| 空格 | 停住或继续旋转（粒子一起停） |
+| 右侧面板 | 曲面、锁定、暗/亮、慢/快/停 |
 | F | 聚焦选中对象 |
 | Esc | 取消选中，回全局视图 |
 | G | 演示：在选中对象下"生长"新对象并聚焦 |
