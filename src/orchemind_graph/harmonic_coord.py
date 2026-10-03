@@ -20,6 +20,25 @@ def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+SCHEME_PACKED = 1
+SCHEME_HASHED = 2
+PRIVATE_ROOT = "1.3.6.1.4.1.55555"
+
+
+def canonical_oid(oid: str, private_root: str = PRIVATE_ROOT) -> str:
+    """旧形 privateRoot.moduleArc.1.branch.arc → 规范形 privateRoot.2.moduleArc.branch.arc。"""
+    parts = oid.split(".")
+    root = private_root.split(".")
+    if parts[: len(root)] != root or len(parts) <= len(root):
+        return oid
+    rest = parts[len(root) :]
+    if rest[0] == "2":
+        return oid
+    if len(rest) > 1 and rest[1] == "1":
+        return ".".join(root + ["2", rest[0]] + rest[2:])
+    return oid
+
+
 def pack_oid(oid: str) -> int:
     parts = [int(piece) for piece in oid.split(".")]
     if 862 not in parts and 55555 not in parts:
@@ -32,15 +51,23 @@ def pack_oid(oid: str) -> int:
     return packed
 
 
-def phase(theta_deg: float, oid: str, harmonic: int) -> float:
-    alpha = pack_oid(oid) / 1_000_000.0
-    return math.radians(theta_deg) + 2.0 * math.pi * alpha * harmonic
+def alpha(oid: str, scheme: int = SCHEME_PACKED) -> float:
+    if scheme == SCHEME_HASHED:
+        import hashlib
+
+        digest = hashlib.sha256(canonical_oid(oid).encode("utf-8")).digest()[:8]
+        return int.from_bytes(digest, "big") / 2**64
+    return pack_oid(oid) / 1_000_000.0
 
 
-def vector(theta_deg: float, oid: str, dim: int = DIM) -> list[float]:
+def phase(theta_deg: float, oid: str, harmonic: int, scheme: int = SCHEME_PACKED) -> float:
+    return math.radians(theta_deg) + 2.0 * math.pi * alpha(oid, scheme) * harmonic
+
+
+def vector(theta_deg: float, oid: str, dim: int = DIM, scheme: int = SCHEME_PACKED) -> list[float]:
     coords: list[float] = []
     for harmonic in range(dim):
-        phi = phase(theta_deg, oid, harmonic)
+        phi = phase(theta_deg, oid, harmonic, scheme)
         coords.append(round(math.cos(phi), 10))
         coords.append(round(math.sin(phi), 10))
     return coords
@@ -75,12 +102,13 @@ def build(version_dir: Path, sidecar: Path | None = None) -> dict:
     verbs = load(VERBS)
     by_deg = {item["code"]: item["deg"] for item in priors["verbs"]}
     by_cluster = {item["code"]: item["cluster"] for item in verbs["verbs"]}
+    scheme = int(ontology.get("coord_scheme", SCHEME_PACKED))
     rows = []
     for node in ontology["nodes"]:
         code = node["anchor_verb"]
         if code not in by_deg:
             raise SystemExit(f"{node['id']} 的锚动词 {code} 没有先验角")
-        coord = vector(by_deg[code], node["oid"])
+        coord = vector(by_deg[code], node["oid"], scheme=scheme)
         recovered, delta = nearest_verb(coord, priors)
         if recovered != code or delta > 1e-3:
             raise SystemExit(f"{node['id']} 第 0 谐波没有回到 {code}（得到 {recovered}，{delta}°）")
@@ -102,7 +130,8 @@ def build(version_dir: Path, sidecar: Path | None = None) -> dict:
         "project": ontology["project"],
         "dna_version": ontology["dna_version"],
         "dim": DIM,
-        "note": "第 0 谐波 = 锚动词先验角的 cos/sin。更高谐波加上 OID 打包值，用来在同动词节点之间分开。声明坐标，不是训练嵌入，也不是向量库。",
+        "coord_scheme": scheme,
+        "note": "第 0 谐波 = 锚动词先验角的 cos/sin。更高谐波用规范 OID 分开同动词节点。方案 1 为打包（已冻结版本）；方案 2 为 SHA-256。声明坐标，不是训练嵌入。",
         "nodes": rows,
     }
     out = version_dir / "coordinates.json"

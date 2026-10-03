@@ -103,7 +103,8 @@ N 层不是随手列物件，而是按经验的条件来组织。
 - **项目本体只放视图（V）**。它用 `<odaaf:Imports><odaaf:Import uri="urn:odaaf:world:pcb" href="../world/pcb-world.odaaf" /></odaaf:Imports>` 导入世界，再用 `abstracted_from` 指向世界叶子。保存、MIB、发布切片都只写本文件自己的条目；MIB 只留一行 `-- @odaaf.import`。
 - 工程文件 `.odaafproj` 两个都列：项目视图 `isPrimary="true"`，世界 `isPrimary="false"`（只读参照）。
 - id 要跨文件不撞：世界一律用 `cls-pw-`、`rel-pw-`、`str-pw-`、`rule-pw-` 前缀。导入时 id 撞了就跳过并报警，不改名。
-- OID 只要求在一个 `.odaaf` / `.mib` 里不重复。跨文件引用用 UUID 或 URI，不靠 OID 前缀。
+- OID 全局唯一，是永久主键。规范形是 `私有根.2.模块弧.分支.弧`；每个文件的模块弧登记在数据仓库根的 `modules.registry.xml`，新文件取下一个空弧，弧永不复用。分裂得到新 OID，旧的退役。
+- 位置向量不是 OID：它由 OID 加当前版本的布局算出，同一版本内固定，每次进化可微调或突变。
 - 条目从项目移到世界后，项目里用过的弧号登记在 `<odaaf:RetiredArcs>`，分配器从此跳过，永不复用。
 - 以后可以再按视图拆（CNC、XML、PCB、索引各一个文件），让各领域的子代理只读自己那一份。
 

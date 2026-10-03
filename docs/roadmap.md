@@ -52,4 +52,4 @@ python src\orchemind_graph\export_figures.py
 - 第一份领域档案：`data/project_dna/oa/v001/`。写成后不改；下一版是 `v002`。
 - 校验：`python src\orchemind_graph\validate_project_dna.py`。
 
-第二期才做全局坐标（簇 + 动词角 + 节点 id），供 Q 落点。第三期才做 Schema 到代码的正向生成，以及代码变更回写 DNA。Omron 与考试题库的 DNA 排在 OA v001 通过之后。
+第二期才做全局坐标（簇 + 动词角 + 节点 OID），供 Q 落点；需求见 [system-requirements/05-coordinates.md](system-requirements/05-coordinates.md)。第三期才做 Schema 到代码的正向生成，以及代码变更回写 DNA。Omron 与考试题库的 DNA 排在 OA v001 通过之后。

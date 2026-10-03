@@ -68,6 +68,8 @@
 | `urn:odaaf:world:pcb` | 物自体表 / 本原表 | 世界文件 `pcb-world.odaaf`；id 前缀 `cls-pw-` 等 |
 | `odaaf:Imports` | 导入 | 项目文件只读引用世界文件；不保存、不分配身份 |
 | `odaaf:RetiredArcs` | 退役弧号 | 移走条目用过的弧号，永不复用 |
+| `modules.registry.xml` | 模块登记表 | 每个文件一个模块弧；OID 因此全局唯一 |
+| `participates_in` | 参与 | 持存者参与事件（钻刀参与钻孔）；经验域 |
 | `part_of` `composes` `constitutes` `causes` `inheres_in` | 是部分、组成、构成、引起、依存于 | 经验域，同一层内部 |
 | RCC8：`DC` `EC` `PO` `EQ` `TPP` `TPPi` `NTPP` `NTPPi` | 相离、外切、部分相交、等同、正切真子集及其逆、非切真子集及其逆 | 共存的空间形式 |
 

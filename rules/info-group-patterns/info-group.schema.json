@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:orchemind:info-group:1",
+  "title": "Information group (four causes + 5W1H)",
+  "type": "object",
+  "required": ["id", "pattern", "roles"],
+  "properties": {
+    "id": {"type": "string"},
+    "oid": {"type": "string", "description": "Canonical OID of the group Structure, when it exists."},
+    "pattern": {"enum": ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9"]},
+    "module": {"type": "string", "description": "Module URI that owns the group."},
+    "sourceLayer": {"type": "string"},
+    "targetLayer": {"type": "string"},
+    "roles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["cause", "aspect", "target"],
+        "properties": {
+          "cause": {"enum": ["Material", "Formal", "Efficient", "Final"]},
+          "aspect": {"enum": ["whatOf", "how", "what", "where", "who", "when", "why"]},
+          "whySub": {"enum": ["effect", "use", "consequence"]},
+          "target": {"type": "string", "description": "Class, rule, event or literal id."},
+          "edge": {"type": "string", "description": "Existing binary relation id that carries the fact."},
+          "from": {"type": "string", "description": "Group id whose result feeds this role (chain)."},
+          "guard": {"type": "boolean"},
+          "unguarded": {"type": "boolean"}
+        },
+        "allOf": [
+          {"if": {"properties": {"aspect": {"const": "why"}}}, "then": {"required": ["whySub"], "properties": {"cause": {"const": "Final"}}}},
+          {"if": {"properties": {"aspect": {"enum": ["whatOf"]}}}, "then": {"properties": {"cause": {"const": "Material"}}}},
+          {"if": {"properties": {"aspect": {"enum": ["how", "what", "where"]}}}, "then": {"properties": {"cause": {"const": "Formal"}}}},
+          {"if": {"properties": {"aspect": {"enum": ["who", "when"]}}}, "then": {"properties": {"cause": {"const": "Efficient"}}}}
+        ]
+      }
+    },
+    "gaps": {"type": "array", "items": {"type": "string"}}
+  }
+}

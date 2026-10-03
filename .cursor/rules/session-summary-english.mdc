@@ -1,0 +1,13 @@
+---
+description: End-of-session completion summary is written in English so it can be pasted as a commit message
+alwaysApply: true
+---
+
+# 会话结束总结用英文
+
+正文照常用简体中文。每次会话结束、汇报完成内容时，**完成总结段用英文写**，用户会把它直接粘到 `git commit` 命令行里。
+
+- 第一行：祈使句标题，≤ 72 字符（例：`Restore global OID uniqueness via module registry`）。
+- 空一行，再按仓库分组列要点（`OrcheEditor:` / `ODAAF data:` / `OrcheMind:`），每条一句完整的话。
+- 只写已完成并验证的内容；测试数写实数（例：`159 tests pass`）。
+- 不提交——提交由用户自己做。

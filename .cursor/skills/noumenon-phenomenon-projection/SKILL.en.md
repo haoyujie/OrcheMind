@@ -90,7 +90,8 @@ This mirrors the test in the *Critique of Practical Reason* (*Kritik der praktis
 - **A project ontology holds only views (V).** It imports the world with `<odaaf:Imports><odaaf:Import uri="urn:odaaf:world:pcb" href="../world/pcb-world.odaaf" /></odaaf:Imports>` and points at world leaves with `abstracted_from`. Save, MIB and published slices write only the file's own items; the MIB keeps a single `-- @odaaf.import` line.
 - The workspace file `.odaafproj` lists both: the project views with `isPrimary="true"`, the world with `isPrimary="false"` (read-only reference).
 - Ids must not clash across files: the world always uses the prefixes `cls-pw-`, `rel-pw-`, `str-pw-`, `rule-pw-`. On import a clashing id is skipped with a warning, never renamed.
-- An OID need only be unique inside one `.odaaf` / `.mib`. Cross-file references use UUID or URI, never an OID prefix.
+- An OID is globally unique and is the permanent key. Its canonical form is `privateRoot.2.moduleArc.branch.arc`; each file's module arc is listed in `modules.registry.xml` at the data-repo root, a new file takes the next free arc, and arcs are never reused. A split yields new OIDs; the old one is retired.
+- The position vector is not the OID: it is computed from the OID plus the current version's layout, fixed within one version, and may shift or jump as the ontology evolves.
 - When items move from a project to the world, the arcs the project used are recorded in `<odaaf:RetiredArcs>`; the allocator skips them and never reuses them.
 - Later the views can be split further (one file each for CNC, XML, PCB and the index), so each domain's sub-agent reads only its own file.
 

@@ -35,6 +35,12 @@
 		},
 		{
 			"path": "../OrcheEditor"
+		},
+		{
+			"path": "../OntoLib"
+		},
+		{
+			"path": "F:/pcb/issues/BZOX-978-jw-gerber"
 		}
 	],
 	"settings": {
