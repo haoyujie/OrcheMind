@@ -19,7 +19,7 @@ training; until then it may appear in drafts only.
 | where | `pass_through` | existing (extension) | object → region | crosses, not an RCC8 base relation |
 | who | `participates_in` | proposed | agent or tool → event | takes part, is not the whole cause |
 | when | `causes` | existing | event → direct product | efficient cause inside a group |
-| when | `precedes` | proposed | earlier event → later event | time order |
+| when | `precedes` | existing | earlier step → later step | time order inside one procedure; peer, never a layer |
 | why | `aims_at` | existing (schema_only) | role → its end inside the group | purposiveness |
 | why.effect | `leads_to` | proposed | result → effect, function or entity | outward effect of the group |
 | why.use | `serves` | proposed | result → business or capability | what it is used for |
@@ -46,4 +46,4 @@ When added to the closed table in `RelationRoles.Feeds` (ODAAF), proposed verbs 
 | `located_in` | object | frame (like `part_of`: the frame is the larger context) |
 | `leads_to`, `serves`, `results_in` | source | target |
 
-`precedes` and RCC8 stay peers: they never set a layer.
+`precedes` is approved for the order of steps inside one procedure. It stays a peer: it is not added to `RelationRoles.Feeds`, and it is not drawn on the experience graph. RCC8 stays a peer too. Neither sets a layer.

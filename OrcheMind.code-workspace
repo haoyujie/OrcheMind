@@ -1,45 +1,59 @@
 {
 	"folders": [
 		{
+			"name": "OrcheMind",
 			"path": "."
 		},
 		{
+			"name": "OmronXmlGenerator",
 			"path": "../../work/main/dev/dev-01-develop/OmronXmlGenerator"
 		},
 		{
-			"path": "../../work/manager/kaoshi"
-		},
-		{
-			"path": "../../work/manager/it/oa"
-		},
-		{
-			"path": "../../work/manager/kaoshiresource"
-		},
-		{
-			"path": "../../work/blzz/AppMgr/blmes/ct/toollib4ct"
-		},
-		{
-			"path": "F:/pcb/01分类/01比较类/01缺陷点导出/2/NG点位项目"
-		},
-		{
-			"path": "../../work/main/dev/dev-01-develop/RapidCAD"
-		},
-		{
-			"path": "F:/pcb/01分类"
-		},
-		{
-			"path": "F:/pcb/issues/BZOX-tmp-0906"
-		},
-		{
-			"path": "F:/pcb/issues/BZOX-974-first-dirll"
-		},
-		{
+			"name": "OrcheEditor",
 			"path": "../OrcheEditor"
 		},
 		{
+			"name": "kaoshi",
+			"path": "../../work/manager/kaoshi"
+		},
+		{
+			"name": "oa",
+			"path": "../../work/manager/it/oa"
+		},
+		{
+			"name": "kaoshiresource",
+			"path": "../../work/manager/kaoshiresource"
+		},
+		{
+			"name": "toollib4ct",
+			"path": "../../work/blzz/AppMgr/blmes/ct/toollib4ct"
+		},
+		{
+			"name": "NG点位项目",
+			"path": "F:/pcb/01分类/01比较类/01缺陷点导出/2/NG点位项目"
+		},
+		{
+			"name": "RapidCAD",
+			"path": "../../work/main/dev/dev-01-develop/RapidCAD"
+		},
+		{
+			"name": "01分类",
+			"path": "F:/pcb/01分类"
+		},
+		{
+			"name": "BZOX-tmp-0906",
+			"path": "F:/pcb/issues/BZOX-tmp-0906"
+		},
+		{
+			"name": "BZOX-974-first-dirll",
+			"path": "F:/pcb/issues/BZOX-974-first-dirll"
+		},
+		{
+			"name": "OntoLib",
 			"path": "../OntoLib"
 		},
 		{
+			"name": "BZOX-978-jw-gerber",
 			"path": "F:/pcb/issues/BZOX-978-jw-gerber"
 		}
 	],

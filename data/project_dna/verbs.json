@@ -16,6 +16,7 @@
     {"code": "NTPP", "name": "non-tangential proper part", "name_zh": "非切真子集", "cluster": "space", "kind": "rcc8"},
     {"code": "NTPPi", "name": "non-tangential proper part inverse", "name_zh": "非切真子集之逆", "cluster": "space", "kind": "rcc8"},
     {"code": "causes", "name": "causes", "name_zh": "引起", "cluster": "cause", "kind": "category"},
+    {"code": "precedes", "name": "precedes", "name_zh": "先于", "cluster": "cause", "kind": "category", "note": "Peer time order inside one procedure. Does not set a layer and is not an experience-graph edge."},
     {"code": "constitutes", "name": "constitutes", "name_zh": "构成", "cluster": "inherence", "kind": "category", "note": "Different kinds: matter constitutes an object. Not an array of the same element."},
     {"code": "composes", "name": "composes", "name_zh": "组成", "cluster": "inherence", "kind": "category", "note": "Same kind of elements stacked into a collection, like a C array."},
     {"code": "part_of", "name": "is part of", "name_zh": "是部分", "cluster": "inherence", "kind": "category", "note": "X is part of Y. Mereology, not peer affiliation."},
